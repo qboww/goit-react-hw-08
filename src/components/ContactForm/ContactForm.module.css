@@ -1,0 +1,24 @@
+.error {
+  color: red;
+  border-bottom: 1px solid;
+  margin-left: 16px;
+}
+
+h2 {
+  font-size: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid grey;
+}
+
+.contactForm input {
+  max-width: 235px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

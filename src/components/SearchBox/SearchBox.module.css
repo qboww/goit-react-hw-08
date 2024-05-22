@@ -1,0 +1,11 @@
+.searchContainer h2 {
+  font-size: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid grey;
+}
+
+.searchContainer input {
+  max-width: 235px;
+  width: 100%;
+}
