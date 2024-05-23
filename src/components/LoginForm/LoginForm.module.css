@@ -14,6 +14,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  border: 1px solid grey;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.labelContainer{
+  margin-top: 16px;
 }
 
 .loginLabel {
@@ -37,12 +45,12 @@
   border-bottom: 1px solid grey;
 }
 
-.btn{
+.btn {
   max-width: 150px;
   width: 100%;
 }
 
-.btnContainer{
+.btnContainer {
   display: flex;
   justify-content: center;
 }

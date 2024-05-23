@@ -73,19 +73,18 @@ const LoginForm = () => {
                   name="password"
                   component="span"
                 />
+
+                <label className={css.labelContainer}>
+                  <Link to="/register" className={css.loginLabel}>
+                    Do not have account?
+                  </Link>
+                </label>
+                <div className={css.btnContainer}>
+                  <button type="submit" className={css.btn}>
+                    Login
+                  </button>
+                </div>
               </div>
-            </div>
-
-            <label>
-              <Link to="/register" className={css.loginLabel}>
-                Do not have account?
-              </Link>
-            </label>
-
-            <div className={css.btnContainer}>
-              <button type="submit" className={css.btn}>
-                Login
-              </button>
             </div>
           </Form>
         </div>
