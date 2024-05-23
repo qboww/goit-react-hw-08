@@ -1,0 +1,11 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}

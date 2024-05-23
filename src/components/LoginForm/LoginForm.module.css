@@ -1,0 +1,48 @@
+.formContainer {
+  padding: 16px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  background-color: #fff;
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loginLabel {
+  color: black;
+}
+
+.input {
+  max-width: 350px;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  margin-left: 16px;
+}
+
+.login {
+  font-size: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid grey;
+}
+
+.btn{
+  max-width: 150px;
+  width: 100%;
+}
+
+.btnContainer{
+  display: flex;
+  justify-content: center;
+}

@@ -1,19 +1,19 @@
-import { Field, Formik, Form, ErrorMessage } from "formik";
-import { nanoid } from "nanoid";
-import { useId } from "react";
-
-import { addContact } from "../../redux/contactsOps";
+import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { useDispatch } from "react-redux";
-
-import * as yup from "yup";
+import * as yup from 'yup';
 
 import css from "./ContactForm.module.css";
 
-const initialValues = {
-  id: nanoid(),
-  name: "",
-  number: "",
-};
+import { useId } from 'react';
+import { addContactsThunk } from '../../redux/contacts/operations';
+
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const initialValues = {
+    name: '',
+    number: '',
+  };
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -30,21 +30,17 @@ const validationSchema = yup.object().shape({
     .max(12, "Number cannot exceed 12 characters"),
 });
 
-export const ContactForm = () => {
-  const nameFieldId = useId();
-  const numberFieldId = useId();
-
-  const dispatch = useDispatch();
-
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
-
+    dispatch(addContactsThunk(values));
     actions.resetForm();
   };
 
+  const nameFieldId = useId();
+  const numberFieldId = useId();
+
   return (
     <div className="sub-card">
-      <h2>Add a person</h2>
+      <h2 className={css.addPerson}>Add a person</h2>
       <div className={css.contactForm}>
         <Formik
           initialValues={initialValues}

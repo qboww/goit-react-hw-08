@@ -1,19 +1,14 @@
-import { useId } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { changeFilter, selectNameFilter } from "../../redux/filtersSlice";
+import { useDispatch } from "react-redux";
 
 import css from "./SearchBox.module.css";
 
-export const SearchBox = () => {
-  const filterFieldId = useId();
+import { useId } from "react";
+import { changeFilter } from "../../redux/filters/slice";
 
-  const { name } = useSelector(selectNameFilter);
-
+const SearchBox = () => {
   const dispatch = useDispatch();
 
-  const handleChange = (event) => {
-    dispatch(changeFilter(event.target.value));
-  };
+  const filterFieldId = useId();
 
   return (
     <div className="sub-card">
@@ -25,8 +20,9 @@ export const SearchBox = () => {
           name="filter"
           id={filterFieldId}
           placeholder="Enter search prompt..."
-          value={name}
-          onChange={handleChange}
+          onChange={(e) => {
+            dispatch(changeFilter(e.target.value));
+          }}
         />
       </div>
     </div>

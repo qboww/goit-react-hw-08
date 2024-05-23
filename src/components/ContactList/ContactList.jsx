@@ -1,33 +1,27 @@
-import Contact from "../Contact/Contact";
 import { useSelector } from "react-redux";
-import Loader from "../Loader/Loader";
-
-import {
-  selectFilteredContacts,
-  selectIsLoading,
-} from "../../redux/contactsSlice";
 
 import css from "./ContactList.module.css";
 
-export const ContactList = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const filteredContacts = useSelector(selectFilteredContacts);
+import { Contact } from "../Contact/Contact";
+
+import { selectFilteredContacts } from "../../redux/contacts/selectors";
+
+const ContactList = () => {
+  const filteredItems = useSelector(selectFilteredContacts);
 
   return (
     <div className="sub-card">
       <div className={css.listParams}>
-        <h2>Check contacts list</h2>
-        <p>Length: {filteredContacts.length}</p>
+        <h2 className={css.checkContact}>Check contacts list</h2>
+        <p>Length: {filteredItems.length}</p>
       </div>
 
-      {isLoading && <Loader />}
-
-      <ul className={css.contactsList}>
-        {filteredContacts.map((contact) => (
-          <li key={contact.id}>
-            <Contact contact={contact} />
-          </li>
-        ))}
+      <ul className={css.contact_list}>
+        {filteredItems.length ? (
+          filteredItems.map((item) => <Contact item={item} key={item.id} />)
+        ) : (
+          <p>No contacts found</p>
+        )}
       </ul>
     </div>
   );
