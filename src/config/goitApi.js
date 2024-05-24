@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const goitApi = axios.create({
-  baseURL: "https://connections-api.herokuapp.com/",
+  baseURL: "http://localhost:5000/",
 });
 
 export default goitApi;
