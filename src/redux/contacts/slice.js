@@ -1,12 +1,12 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   addContactsThunk,
   deleteContactsThunk,
   editContactsThunk,
   fetchContactsThunk,
-} from './operations';
-import { logoutThunk } from '../auth/operations';
-import toast from 'react-hot-toast';
+} from "./operations";
+import { logoutThunk } from "../auth/operations";
+import toast from "react-hot-toast";
 
 const initialState = {
   items: [],
@@ -15,66 +15,63 @@ const initialState = {
 };
 
 const contactsSlice = createSlice({
-  name: 'contacts',
+  name: "contacts",
   initialState,
   selectors: {
-    selectContacts: state => state.items,
-    selectIsLoading: state => state.isLoading,
-    selectIsError: state => state.isError,
+    selectContacts: (state) => state.items,
+    selectIsLoading: (state) => state.isLoading,
+    selectIsError: (state) => state.isError,
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.items = payload;
         state.isLoading = false;
       })
-
       .addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
-        const deletedItem = state.items.find(item => item.id === payload);
+        const deletedItem = state.items.find((item) => item._id === payload);
         if (deletedItem) {
           toast.error(`${deletedItem.name} Contact was deleted`);
         }
-        state.items = state.items.filter(item => item.id !== payload);
+        state.items = state.items.filter((item) => item._id !== payload);
         state.isLoading = false;
       })
-
       .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
         state.items.push(payload);
         state.isLoading = false;
         toast.success(`${payload.name} Contact was added`);
       })
       .addCase(editContactsThunk.fulfilled, (state, { payload }) => {
-        const item = state.items.find(item => item.id === payload.id);
-
-        item.name = payload.name;
-        item.number = payload.number;
+        const item = state.items.find((item) => item._id === payload._id);
+        if (item) {
+          item.name = payload.name;
+          item.number = payload.number;
+        }
       })
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
       })
-
       .addMatcher(
         isAnyOf(
           fetchContactsThunk.pending,
           deleteContactsThunk.pending,
-          addContactsThunk.pending
+          addContactsThunk.pending,
         ),
-        state => {
+        (state) => {
           state.isLoading = true;
           state.isError = false;
-        }
+        },
       )
       .addMatcher(
         isAnyOf(
           fetchContactsThunk.rejected,
           deleteContactsThunk.rejected,
-          addContactsThunk.rejected
+          addContactsThunk.rejected,
         ),
         (state, { payload }) => {
           state.isError = payload;
           state.isLoading = false;
-        }
+        },
       );
   },
 });

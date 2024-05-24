@@ -11,14 +11,15 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,css,html}\""
   },
   "dependencies": {
+    "@fontsource/inter-tight": "^5.0.20",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.4",
-    "@fontsource/inter-tight": "^5.0.20",
     "axios": "^1.6.8",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "modern-normalize": "^2.0.0",
     "nanoid": "^5.0.7",
+    "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",

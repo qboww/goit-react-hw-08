@@ -21,7 +21,7 @@ export const Contact = ({ item }) => {
           {item.number}
         </p>
       </div>
-      <button onClick={() => dispatch(deleteContactsThunk(item.id))}>
+      <button onClick={() => dispatch(deleteContactsThunk(item._id))}>
         Delete
       </button>
     </div>

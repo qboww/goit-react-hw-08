@@ -55,7 +55,11 @@ const RegistrationForm = () => {
                 placeholder="Enter you username..."
                 id={nameFieldId}
               />
-              <ErrorMessage className={css.error} name="name" component="span" />
+              <ErrorMessage
+                className={css.error}
+                name="name"
+                component="span"
+              />
             </div>
             <div className={css.wrapper}>
               <label htmlFor={emailFieldId}>Email</label>
@@ -66,7 +70,11 @@ const RegistrationForm = () => {
                 placeholder="Enter you email..."
                 id={emailFieldId}
               />
-              <ErrorMessage className={css.error} name="email" component="span" />
+              <ErrorMessage
+                className={css.error}
+                name="email"
+                component="span"
+              />
             </div>
             <div className={css.wrapper}>
               <label htmlFor={passwordFieldId}>Password</label>
