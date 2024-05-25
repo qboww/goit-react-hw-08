@@ -1,4 +1,3 @@
-// App.js
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -16,7 +15,7 @@ import AdminPage from "./pages/AdminPage/AdminPage"; // Import AdminPage
 import Layout from "./components/Layout/Layout";
 
 import { refreshThunk } from "./redux/auth/operations";
-import { selectIsRefreshing } from "./redux/auth/slice";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 import Refresher from "./components/Refresher/Refresher";
 
 function App() {
