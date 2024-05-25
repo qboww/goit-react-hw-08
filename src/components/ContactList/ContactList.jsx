@@ -1,29 +1,27 @@
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import css from "./ContactList.module.css";
+import { Contact } from "../Contact/Contact";
+import { selectFilteredContacts } from "../../redux/contactsSlice";
 
-import ContactForm from "../../components/ContactForm/ContactForm";
-import ContactList from "../../components/ContactList/ContactList";
-import SearchBox from "../../components/SearchBox/SearchBox";
-
-import { fetchContactsThunk } from "../../redux/contactsOperations";
-import { useEffect } from "react";
-
-const ContactsPage = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContactsThunk());
-  }, [dispatch]);
+const ContactList = () => {
+  const filteredItems = useSelector(selectFilteredContacts);
 
   return (
-    <div className="container">
-      <div className="card">
-        <h1>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-        <ContactList />
+    <div className="sub-card">
+      <div className={css.listParams}>
+        <h2 className={css.checkContact}>Check contacts list</h2>
+        <p>Length: {filteredItems.length}</p>
       </div>
+
+      <ul className={css.contactsList}>
+        {filteredItems.length ? (
+          filteredItems.map((item) => <Contact item={item} key={item._id} />)
+        ) : (
+          <p>No contacts found</p>
+        )}
+      </ul>
     </div>
   );
 };
 
-export default ContactsPage;
+export default ContactList;
