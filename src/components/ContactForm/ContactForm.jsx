@@ -5,7 +5,7 @@ import * as yup from "yup";
 import css from "./ContactForm.module.css";
 
 import { useId } from "react";
-import { addContactsThunk } from "../../redux/contacts/operations";
+import { addContactsThunk } from "../../redux/contactsOperations";
 
 const ContactForm = () => {
   const dispatch = useDispatch();

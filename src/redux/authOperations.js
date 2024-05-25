@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import goitApi, { clearToken, setToken } from "../../config/goitApi";
+import goitApi, { clearToken, setToken } from "../config/goitApi";
 
 export const registerThunk = createAsyncThunk(
   "auth/register",

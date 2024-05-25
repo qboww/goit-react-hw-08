@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/slice";
+import { selectIsLoggedIn } from "../../redux/authSlice";
 
 import css from "./AppBar.module.css";
 

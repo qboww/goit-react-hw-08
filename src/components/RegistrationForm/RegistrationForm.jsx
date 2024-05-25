@@ -5,7 +5,7 @@ import { useId } from "react";
 import * as yup from "yup";
 import css from "./RegistrationForm.module.css";
 
-import { registerThunk } from "../../redux/auth/operations";
+import { registerThunk } from "../../redux/authOperations";
 
 const validationSchema = yup.object().shape({
   name: yup

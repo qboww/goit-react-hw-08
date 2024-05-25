@@ -7,9 +7,12 @@ import {
   fetchAllContactsThunk,
   deleteContactAdminThunk,
   editContactAdminThunk,
-} from "./operations";
-import { logoutThunk } from "../auth/operations";
+} from "./contactsOperations";
+import { logoutThunk } from "./authOperations";
 import toast from "react-hot-toast";
+
+import { createSelector } from "@reduxjs/toolkit";
+import { selectNameFilter, selectNumberFilter } from "./filtersSlice";
 
 const initialState = {
   items: [],
@@ -95,6 +98,18 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const selectContacts = (state) => state.contacts.items; // Ensure this line is present and correctly defined
+export const selectContacts = (state) => state.contacts.items;
 export const selectIsLoading = (state) => state.contacts.isLoading;
 export const selectIsError = (state) => state.contacts.isError;
+
+export const selectFilteredContacts = createSelector(
+  [selectContacts, selectNameFilter, selectNumberFilter],
+  (items, filter, number) => {
+    const filteredItems = items.filter(
+      (item) =>
+        item.name.toLowerCase().includes(filter.toLowerCase()) ||
+        item.number.includes(number),
+    );
+    return filteredItems;
+  },
+);

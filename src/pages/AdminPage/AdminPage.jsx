@@ -4,8 +4,8 @@ import {
   fetchAllContactsThunk,
   deleteContactAdminThunk,
   editContactAdminThunk,
-} from "../../redux/contacts/operations";
-import { selectContacts } from "../../redux/contacts/slice";
+} from "../../redux/contactsOperations";
+import { selectContacts } from "../../redux/contactsSlice";
 import css from "./AdminPage.module.css";
 
 const AdminPage = () => {

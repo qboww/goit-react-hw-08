@@ -13,10 +13,10 @@ import NotFound from "./pages/NotFound/NotFound";
 import AdminPage from "./pages/AdminPage/AdminPage";
 
 import Layout from "./components/Layout/Layout";
-
-import { refreshThunk } from "./redux/auth/operations";
-import { selectIsRefreshing } from "./redux/auth/selectors";
 import Refresher from "./components/Refresher/Refresher";
+
+import { refreshThunk } from "./redux/authOperations";
+import { selectIsRefreshing } from "./redux/authSlice";
 
 export default function App() {
   const dispatch = useDispatch();

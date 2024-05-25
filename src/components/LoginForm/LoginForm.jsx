@@ -5,7 +5,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import css from "./LoginForm.module.css";
 
-import { loginThunk } from "../../redux/auth/operations";
+import { loginThunk } from "../../redux/authOperations";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()

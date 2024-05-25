@@ -4,14 +4,7 @@ import {
   logoutThunk,
   refreshThunk,
   registerThunk,
-} from "./operations";
-import {
-  selectUserName,
-  selectToken,
-  selectIsLoggedIn,
-  selectIsRefreshing,
-  selectUserRole,
-} from "./selectors";
+} from "./authOperations";
 
 const initialState = {
   user: {
@@ -59,10 +52,9 @@ const slice = createSlice({
 });
 
 export const authReducer = slice.reducer;
-export {
-  selectIsLoggedIn,
-  selectToken,
-  selectUserName,
-  selectIsRefreshing,
-  selectUserRole,
-};
+
+export const selectUserName = (state) => state.auth.user.name;
+export const selectToken = (state) => state.auth.token;
+export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
+export const selectIsRefreshing = (state) => state.auth.isRefreshing;
+export const selectUserRole = (state) => state.auth.user.role;

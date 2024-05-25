@@ -1,7 +1,6 @@
-// routes/PrivateRoute.js
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn, selectUserRole } from "../redux/auth/selectors";
+import { selectIsLoggedIn, selectUserRole } from "../redux/authSlice";
 
 const PrivateRoute = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

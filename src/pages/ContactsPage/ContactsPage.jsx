@@ -4,7 +4,7 @@ import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
 import SearchBox from "../../components/SearchBox/SearchBox";
 
-import { fetchContactsThunk } from "../../redux/contacts/operations";
+import { fetchContactsThunk } from "../../redux/contactsOperations";
 import { useEffect } from "react";
 
 const ContactsPage = () => {
