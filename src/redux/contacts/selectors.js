@@ -13,3 +13,4 @@ export const selectFilteredContacts = createSelector(
     return filteredItems;
   },
 );
+

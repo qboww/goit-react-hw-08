@@ -41,7 +41,42 @@ export const editContactsThunk = createAsyncThunk(
   "contacts/Edit",
   async (body, thunkApi) => {
     try {
-      console.log(body);
+      const { data } = await goitApi.patch(`contacts/${body.id}`, body);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const fetchAllContactsThunk = createAsyncThunk(
+  "contacts/fetchAllAdmin",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await goitApi.get("contacts/admin");
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteContactAdminThunk = createAsyncThunk(
+  "contacts/deleteAdmin",
+  async (id, thunkApi) => {
+    try {
+      await goitApi.delete(`contacts/${id}`);
+      return id;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const editContactAdminThunk = createAsyncThunk(
+  "contacts/editAdmin",
+  async (body, thunkApi) => {
+    try {
       const { data } = await goitApi.patch(`contacts/${body.id}`, body);
       return data;
     } catch (error) {

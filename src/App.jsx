@@ -8,9 +8,9 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
-import AdminRoute from "./routes/AdminRoute"; // Import AdminRoute
+import AdminRoute from "./routes/AdminRoute";
 import NotFound from "./pages/NotFound/NotFound";
-import AdminPage from "./pages/AdminPage/AdminPage"; // Import AdminPage
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 import Layout from "./components/Layout/Layout";
 
@@ -18,7 +18,7 @@ import { refreshThunk } from "./redux/auth/operations";
 import { selectIsRefreshing } from "./redux/auth/selectors";
 import Refresher from "./components/Refresher/Refresher";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -29,19 +29,11 @@ function App() {
   return isRefreshing ? (
     <Refresher />
   ) : (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
         <Route
-          path="/contacts"
-          element={
-            <PrivateRoute>
-              <ContactsPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/register"
+          path="register"
           element={
             <PublicRoute>
               <RegistrationPage />
@@ -49,7 +41,7 @@ function App() {
           }
         />
         <Route
-          path="/login"
+          path="login"
           element={
             <PublicRoute>
               <LoginPage />
@@ -57,7 +49,15 @@ function App() {
           }
         />
         <Route
-          path="/admin"
+          path="contacts"
+          element={
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="admin"
           element={
             <AdminRoute>
               <AdminPage />
@@ -65,9 +65,7 @@ function App() {
           }
         />
         <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
