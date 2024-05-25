@@ -11,7 +11,6 @@ import {
 } from "./contactsOperations";
 import { logoutThunk } from "./authOperations";
 import toast from "react-hot-toast";
-
 import { createSelector } from "@reduxjs/toolkit";
 import { selectNameFilter, selectNumberFilter } from "./filtersSlice";
 
@@ -24,7 +23,24 @@ const initialState = {
 const contactsSlice = createSlice({
   name: "contacts",
   initialState,
-  reducers: {},
+  reducers: {
+    addContact: (state, action) => {
+      state.items.push(action.payload);
+    },
+    updateContact: (state, action) => {
+      const index = state.items.findIndex(
+        (contact) => contact._id === action.payload._id,
+      );
+      if (index !== -1) {
+        state.items[index] = action.payload;
+      }
+    },
+    deleteContact: (state, action) => {
+      state.items = state.items.filter(
+        (contact) => contact._id !== action.payload.id,
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
@@ -97,6 +113,9 @@ const contactsSlice = createSlice({
       );
   },
 });
+
+export const { addContact, updateContact, deleteContact } =
+  contactsSlice.actions;
 
 export const contactsReducer = contactsSlice.reducer;
 export const selectContacts = (state) => state.contacts.items;

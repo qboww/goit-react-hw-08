@@ -1,4 +1,4 @@
-//contactsOperations.js
+// contactsOperations.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import goitApi from "../config/goitApi";
 

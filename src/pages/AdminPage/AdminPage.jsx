@@ -5,7 +5,12 @@ import {
   deleteContactAdminThunk,
   editContactAdminThunk,
 } from "../../redux/contactsOperations";
-import { selectContacts } from "../../redux/contactsSlice";
+import {
+  addContact,
+  updateContact,
+  deleteContact,
+  selectContacts,
+} from "../../redux/contactsSlice";
 import AdminTable from "../../components/AdminTable/AdminTable";
 import css from "./AdminPage.module.css";
 
@@ -15,6 +20,35 @@ const AdminPage = () => {
 
   useEffect(() => {
     dispatch(fetchAllContactsThunk());
+
+    const eventSource = new EventSource("http://localhost:5000/events");
+
+    eventSource.onmessage = (event) => {
+      const parsedData = JSON.parse(event.data);
+
+      switch (parsedData.type) {
+        case "ADD_CONTACT":
+          dispatch(addContact(parsedData.payload));
+          break;
+        case "UPDATE_CONTACT":
+          dispatch(updateContact(parsedData.payload));
+          break;
+        case "DELETE_CONTACT":
+          dispatch(deleteContact(parsedData.payload));
+          break;
+        default:
+          break;
+      }
+    };
+
+    const pollInterval = setInterval(() => {
+      dispatch(fetchAllContactsThunk());
+    }, 5000); // Poll every 5 seconds
+
+    return () => {
+      eventSource.close();
+      clearInterval(pollInterval);
+    };
   }, [dispatch]);
 
   const handleSave = (id, name, number) => {
