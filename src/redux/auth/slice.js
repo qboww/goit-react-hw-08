@@ -10,12 +10,14 @@ import {
   selectToken,
   selectIsLoggedIn,
   selectIsRefreshing,
+  selectUserRole,
 } from "./selectors";
 
 const initialState = {
   user: {
     name: "",
     email: "",
+    role: "", // Add role here
   },
   isLoggedIn: false,
   error: false,
@@ -57,4 +59,10 @@ const slice = createSlice({
 });
 
 export const authReducer = slice.reducer;
-export { selectIsLoggedIn, selectToken, selectUserName, selectIsRefreshing };
+export {
+  selectIsLoggedIn,
+  selectToken,
+  selectUserName,
+  selectIsRefreshing,
+  selectUserRole,
+};

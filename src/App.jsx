@@ -1,3 +1,4 @@
+// App.js
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -8,7 +9,9 @@ import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
+import AdminRoute from "./routes/AdminRoute"; // Import AdminRoute
 import NotFound from "./pages/NotFound/NotFound";
+import AdminPage from "./pages/AdminPage/AdminPage"; // Import AdminPage
 
 import Layout from "./components/Layout/Layout";
 
@@ -52,6 +55,14 @@ function App() {
             <PublicRoute>
               <LoginPage />
             </PublicRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminPage />
+            </AdminRoute>
           }
         />
         <Route path="*" element={<NotFound />} />
