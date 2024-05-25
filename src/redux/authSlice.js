@@ -1,3 +1,5 @@
+
+// authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import {
   loginThunk,
@@ -10,7 +12,7 @@ const initialState = {
   user: {
     name: "",
     email: "",
-    role: "", // Add role here
+    role: "", 
   },
   isLoggedIn: false,
   error: false,

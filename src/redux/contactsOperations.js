@@ -1,3 +1,4 @@
+//contactsOperations.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import goitApi from "../config/goitApi";
 
@@ -18,7 +19,7 @@ export const deleteContactsThunk = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       await goitApi.delete(`contacts/${id}`);
-      return id; // Return the id directly
+      return id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

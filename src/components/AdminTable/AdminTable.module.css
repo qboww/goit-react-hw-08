@@ -12,18 +12,14 @@
   border: 1px solid grey;
   border-radius: 8px;
   padding: 32px 16px;
-  background-color: #fff;
-}
-
-.wrapperText h1,
-.wrapperText p {
-  color: black;
 }
 
 .subContainer {
   border: 1px solid grey;
   padding: 16px;
   border-radius: 8px;
+  background-color: #fff;
+  color: black;
 }
 
 .subCard {

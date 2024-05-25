@@ -1,3 +1,4 @@
+// authOperations.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import goitApi, { clearToken, setToken } from "../config/goitApi";
 
