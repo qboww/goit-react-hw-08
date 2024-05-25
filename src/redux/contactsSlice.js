@@ -1,4 +1,3 @@
-// contactsSlice.js
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   addContactsThunk,
