@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import TasksPage from "./pages/TasksPage/TasksPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import ResourcesPage from "./pages/ResourcesPage/ResourcesPage"; 
 import PublicRoute from "./routes/PublicRoute";
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
@@ -64,6 +65,7 @@ export default function App() {
             </AdminRoute>
           }
         />
+        <Route path="resources" element={<ResourcesPage />} />{" "}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

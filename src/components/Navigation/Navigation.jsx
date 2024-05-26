@@ -24,6 +24,9 @@ const Navigation = () => {
           Admin Panel
         </NavLink>
       )}
+      <NavLink to="/resources" className={css.link}>
+        Resources
+      </NavLink>
     </nav>
   );
 };
