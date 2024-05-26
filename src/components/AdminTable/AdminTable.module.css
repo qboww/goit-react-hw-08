@@ -1,40 +1,3 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.wrapperText {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  padding: 32px 16px;
-}
-
-.subContainer {
-  border: 1px solid grey;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #fff;
-  color: black;
-}
-
-.subCard {
-  padding: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  background-color: #fff;
-  color: black;
-}
-
-.customData {
-  font-size: 24px;
-  padding: 8px 0px;
-  font-weight: 500;
-}
 
 .customTable {
   border-collapse: collapse;
@@ -75,19 +38,25 @@
 .customTable textarea,
 .customTable select {
   width: 100%;
-  max-width: 100%;
   padding: 4px;
   box-sizing: border-box;
 }
 
 .customTable input[type="date"] {
-  max-width: 90px;
+  max-width: 105px;
   width: 100%;
   text-align: center;
 }
 
+.customTable input[type="text"] {
+  max-width: 150px;
+  width: 100%;
+  text-align: left;
+}
+
+
 .customTable input[type="number"] {
-  max-width: 32px;
+  max-width: 35px;
   width: 100%;
   text-align: center;
 }
@@ -108,17 +77,6 @@
   width: 250px;
   height: 50px;
   resize: vertical;
-}
-
-.customTable select {
-  width: 100%;
-}
-
-.manageTasks {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
 }
 
 @media screen and (min-width: 768px) {

@@ -14,7 +14,6 @@ import {
 import AdminTable from "../../components/AdminTable/AdminTable";
 import TaskForm from "../../components/TaskForm/TaskForm";
 import SearchBox from "../../components/SearchBox/SearchBox";
-import css from "./AdminPage.module.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -45,7 +44,7 @@ const AdminPage = () => {
 
     const pollInterval = setInterval(() => {
       dispatch(fetchAllTasksThunk());
-    }, 5000); 
+    }, 5000);
 
     return () => {
       eventSource.close();
@@ -63,14 +62,14 @@ const AdminPage = () => {
 
   return (
     <div className="container">
-      <div className={css.wrapper}>
-        <div className={css.subCard}>
-          <div className={css.wrapperText}>
+      <div className="wrapper">
+        <div className="card">
+          <div className="card-desc">
             <h1>Admin Page</h1>
             <p>Here you are able to create, edit, and delete tasks</p>
           </div>
         </div>
-        <div className={css.subCard}>
+        <div className="card">
           <TaskForm />
           <SearchBox />
           <AdminTable

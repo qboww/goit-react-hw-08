@@ -1,32 +1,7 @@
-.error {
-  color: red;
-  border-bottom: 1px solid;
-}
-
-.addPerson {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
-}
-
 .contactForm input {
   max-width: 235px;
   width: 100%;
   margin-bottom: 16px;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.addTask {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
 }
 
 form {
@@ -47,10 +22,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.btn {
-  width: fit-content;
 }
 
 .containerLeft div,
@@ -74,12 +45,6 @@ select {
   color: black;
   padding: 6px;
   outline: none;
-}
-
-.fieldError{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 @media screen and (min-width: 768px) {

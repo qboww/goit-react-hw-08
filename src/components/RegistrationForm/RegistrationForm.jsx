@@ -43,12 +43,12 @@ const RegistrationForm = () => {
       validationSchema={validationSchema}
     >
       <div className="container">
-        <Form className={css.form}>
+        <Form className="card">
           <div className={css.inputsContainer}>
             <div className={css.wrapper}>
-              <h2 className={css.register}>Register an account</h2>
+              <h2 className="component-title">Register an account</h2>
               <label htmlFor={nameFieldId}>Username</label>
-              <div className={css.inputError}>
+              <div className="input-error">
                 <Field
                   className={css.input}
                   type="text"
@@ -56,16 +56,12 @@ const RegistrationForm = () => {
                   placeholder="Enter you username..."
                   id={nameFieldId}
                 />
-                <ErrorMessage
-                  className={css.error}
-                  name="name"
-                  component="span"
-                />
+                <ErrorMessage className="error" name="name" component="span" />
               </div>
             </div>
             <div className={css.wrapper}>
               <label htmlFor={emailFieldId}>Email</label>
-              <div className={css.inputError}>
+              <div className="input-error">
                 <Field
                   className={css.input}
                   type="email"
@@ -73,16 +69,12 @@ const RegistrationForm = () => {
                   placeholder="Enter you email..."
                   id={emailFieldId}
                 />
-                <ErrorMessage
-                  className={css.error}
-                  name="email"
-                  component="span"
-                />
+                <ErrorMessage className="error" name="email" component="span" />
               </div>
             </div>
             <div className={css.wrapper}>
               <label htmlFor={passwordFieldId}>Password</label>
-              <div className={css.inputError}>
+              <div className="input-error">
                 <Field
                   className={css.input}
                   type="password"
@@ -91,7 +83,7 @@ const RegistrationForm = () => {
                   id={passwordFieldId}
                 />
                 <ErrorMessage
-                  className={css.error}
+                  className="error"
                   name="password"
                   component="span"
                 />

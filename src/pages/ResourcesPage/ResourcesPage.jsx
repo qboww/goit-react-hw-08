@@ -17,17 +17,17 @@ const getYouTubeThumbnail = (url) => {
 const ResourcesPage = () => {
   return (
     <div className="container">
-      <div className={css.resContainer}>
-        <div className={css.subContainer}>
-          <div className={css.wrapper}>
+      <div className="wrapper">
+        <div className="card">
+          <div className="card-desc">
             <h1>Learning Resources</h1>
             <p>Lets dive into learning together!</p>
           </div>
         </div>
 
-        <div className={css.subContainer}>
-          <div className={css.wrapperDefault}>
-            <h2 className={css.channelsHeader}>Popular documentations</h2>
+        <div className="card">
+          <div className="sub-card">
+            <h2 className="component-title">Popular documentations</h2>
             <ol className={css.linksList}>
               <li>
                 <a
@@ -94,8 +94,8 @@ const ResourcesPage = () => {
               </li>
             </ol>
           </div>
-          <div className={css.wrapperDefault}>
-            <h2 className={css.channelsHeader}>Freecodecamp videos</h2>
+          <div className="sub-card">
+            <h2 className="component-title">Freecodecamp videos</h2>
             <ul className={css.videoList}>
               {videos.map((video, index) => (
                 <li key={index} className={css.videoItem}>

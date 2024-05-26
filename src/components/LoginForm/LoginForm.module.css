@@ -1,43 +1,10 @@
-.formContainer {
-  padding: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  background-color: #fff;
-  color: black;
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.inputsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  border: 1px solid grey;
-  padding: 16px;
-  border-radius: 8px;
-}
-
 .labelContainer {
   margin-top: 16px;
-}
-
-.loginLabel {
-  color: black;
 }
 
 .input {
   max-width: 350px;
   width: 100%;
-}
-
-.login {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
 }
 
 .btn {
@@ -51,12 +18,8 @@
   padding-top: 16px;
 }
 
-.inputError{
+.inputsContainer{
   display: flex;
   flex-direction: column;
-   gap: 4px;
-}
-
-.error {
-  color: red;
+  gap: 16px;
 }

@@ -4,7 +4,6 @@ import TaskList from "../../components/TaskList/TaskList";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { fetchTasksThunk } from "../../redux/tasksOperations";
 import { addTask, updateTask, deleteTask } from "../../redux/tasksSlice";
-import css from "./TaskPage.module.css";
 
 const TasksPage = () => {
   const dispatch = useDispatch();
@@ -44,14 +43,14 @@ const TasksPage = () => {
 
   return (
     <div className="container">
-      <div className={css.wrapper}>
-        <div className={css.subCard}>
-          <div className={css.wrapperText}>
+      <div className="wrapper">
+        <div className="card">
+          <div className="card-desc">
             <h1>Tasks Page</h1>
             <p>Here you are able to view managed tasks!</p>
           </div>
         </div>
-        <div className={css.subCard}>
+        <div className="card">
           <SearchBox />
           <TaskList />
         </div>

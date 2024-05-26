@@ -40,13 +40,13 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         initialValues={initialValues}
       >
-        <div className={css.container}>
-          <Form className={css.formContainer}>
+        <Form className="card">
+          <div className="sub-card">
             <div className={css.inputsContainer}>
               <div className={css.inputContainer}>
-                <h2 className={css.login}>Login</h2>
+                <h2 className="component-title">Login</h2>
                 <label htmlFor={emailFieldId}>Email</label>
-                <div className={css.inputError}>
+                <div className="input-error">
                   <Field
                     className={css.input}
                     type="email"
@@ -55,7 +55,7 @@ const LoginForm = () => {
                     id={emailFieldId}
                   />
                   <ErrorMessage
-                    className={css.error}
+                    className="error"
                     name="email"
                     component="span"
                   />
@@ -63,7 +63,7 @@ const LoginForm = () => {
               </div>
               <div className={css.inputContainer}>
                 <label htmlFor={passwordFieldId}>Password</label>
-                <div className={css.inputError}>
+                <div className="input-error">
                   <Field
                     className={css.input}
                     type="text"
@@ -72,12 +72,11 @@ const LoginForm = () => {
                     id={passwordFieldId}
                   />
                   <ErrorMessage
-                    className={css.error}
+                    className="error"
                     name="password"
                     component="span"
                   />
                 </div>
-
                 <label className={css.labelContainer}>
                   <Link to="/register" className={css.loginLabel}>
                     Do not have account?
@@ -90,8 +89,8 @@ const LoginForm = () => {
                 </div>
               </div>
             </div>
-          </Form>
-        </div>
+          </div>
+        </Form>
       </Formik>
     </div>
   );

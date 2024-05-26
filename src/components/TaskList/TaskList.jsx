@@ -1,4 +1,3 @@
-// TaskList.js
 import { useSelector } from "react-redux";
 import css from "./TaskList.module.css";
 import { Task } from "../Task/Task";

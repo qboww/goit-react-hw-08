@@ -61,7 +61,7 @@ const TaskForm = () => {
 
   return (
     <div className="sub-card">
-      <h2 className={css.addTask}>Add a task</h2>
+      <h2 className="component-title">Add a task</h2>
       <div className={css.taskForm}>
         <Formik
           initialValues={initialValues}
@@ -73,7 +73,7 @@ const TaskForm = () => {
               <div className={css.containerLeft}>
                 <div>
                   <label htmlFor={courseNameFieldId}>Course Name</label>
-                  <div className={css.fieldError}>
+                  <div className="input-error">
                     <Field
                       type="text"
                       id={courseNameFieldId}
@@ -81,7 +81,7 @@ const TaskForm = () => {
                       placeholder="Enter course name..."
                     />
                     <ErrorMessage
-                      className={css.error}
+                      className="error"
                       name="courseName"
                       component="span"
                     />
@@ -89,7 +89,7 @@ const TaskForm = () => {
                 </div>
                 <div>
                   <label htmlFor={taskNameFieldId}>Task Name</label>
-                  <div className={css.fieldError}>
+                  <div className="input-error">
                     <Field
                       type="text"
                       id={taskNameFieldId}
@@ -97,7 +97,7 @@ const TaskForm = () => {
                       placeholder="Enter task name..."
                     />
                     <ErrorMessage
-                      className={css.error}
+                      className="error"
                       name="taskName"
                       component="span"
                     />
@@ -105,7 +105,7 @@ const TaskForm = () => {
                 </div>
                 <div>
                   <label htmlFor={markFieldId}>Mark</label>
-                  <div className={css.fieldError}>
+                  <div className="input-error">
                     <Field
                       type="number"
                       id={markFieldId}
@@ -113,7 +113,7 @@ const TaskForm = () => {
                       placeholder="Enter mark..."
                     />
                     <ErrorMessage
-                      className={css.error}
+                      className="error"
                       name="mark"
                       component="span"
                     />
@@ -121,14 +121,14 @@ const TaskForm = () => {
                 </div>
                 <div>
                   <label htmlFor={deadlineDateFieldId}>Deadline Date</label>
-                  <div className={css.fieldError}>
+                  <div className="input-error">
                     <Field
                       type="date"
                       id={deadlineDateFieldId}
                       name="deadlineDate"
                     />
                     <ErrorMessage
-                      className={css.error}
+                      className="error"
                       name="deadlineDate"
                       component="span"
                     />
@@ -140,7 +140,7 @@ const TaskForm = () => {
                   <label htmlFor={taskDescriptionFieldId}>
                     Task Description
                   </label>
-                  <div className={css.fieldError}>
+                  <div className="input-error">
                     <Field
                       rows="4"
                       cols="28"
@@ -150,7 +150,7 @@ const TaskForm = () => {
                       placeholder="Enter task description..."
                     />
                     <ErrorMessage
-                      className={css.error}
+                      className="error"
                       name="taskDescription"
                       component="span"
                     />
@@ -158,14 +158,14 @@ const TaskForm = () => {
                 </div>
                 <div>
                   <label htmlFor={stateFieldId}>State</label>
-                  <div className={css.fieldError}>
+                  <div className="input-error">
                     <Field as="select" id={stateFieldId} name="state">
                       <option value="pending">Pending</option>
                       <option value="in progress">In Progress</option>
                       <option value="completed">Completed</option>
                     </Field>
                     <ErrorMessage
-                      className={css.error}
+                      className="error"
                       name="state"
                       component="span"
                     />

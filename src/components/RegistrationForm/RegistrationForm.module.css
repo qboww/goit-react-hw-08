@@ -1,11 +1,3 @@
-.form {
-  padding: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  background-color: #fff;
-  color: black;
-}
-
 .linkContainer {
   margin-top: 16px;
 }
@@ -34,25 +26,4 @@
   display: flex;
   justify-content: center;
   padding-top: 16px;
-}
-
-.link {
-  color: black;
-}
-
-.register {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
-}
-
-.inputError {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.error {
-  color: red;
 }

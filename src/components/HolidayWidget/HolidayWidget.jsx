@@ -29,7 +29,7 @@ const HolidayWidget = () => {
 
   return (
     <div className="sub-card">
-      <h2 className={css.holidayToday}>Holiday of the day!</h2>
+      <h2 className="component-title">Holiday of the day!</h2>
       <div className={css.holidayContainer}>
         <h2 className={css.holidayName}></h2>
         <p className={css.holidayDescription}>{holiday.description}</p>

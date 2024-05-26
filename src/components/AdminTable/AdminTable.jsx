@@ -38,8 +38,8 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
   };
 
   return (
-    <div className={css.subContainer}>
-      <h2 className={css.manageTasks}>Manage tasks</h2>
+    <div className="sub-card">
+      <h2 className="component-title">Manage tasks</h2>
       <table className={css.customTable}>
         <thead className={css.customHead}>
           <tr className={css.customRow}>

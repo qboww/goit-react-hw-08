@@ -1,4 +1,3 @@
-// Task.js
 import { FaCalendarAlt } from "react-icons/fa";
 import css from "./Task.module.css";
 
