@@ -1,8 +1,8 @@
-// store.js
 import { configureStore } from "@reduxjs/toolkit";
 import { tasksReducer } from "./tasksSlice";
-
 import { authReducer } from "./authSlice";
+import { filtersReducer } from "./filtersSlice";
+import { userReducer } from "./userSlice"; // Add this line
 import {
   persistStore,
   persistReducer,
@@ -13,9 +13,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
 import storage from "redux-persist/lib/storage";
-import { filtersReducer } from "./filtersSlice";
 
 const persistConfig = {
   key: "auth",
@@ -29,6 +27,7 @@ export const store = configureStore({
     tasks: tasksReducer,
     filters: filtersReducer,
     auth: persistReducer(persistConfig, authReducer),
+    users: userReducer, // Add this line
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

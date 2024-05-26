@@ -7,7 +7,7 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
 }
 
 .containerLeft,
@@ -22,12 +22,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.containerLeft div,
-.containerRight div{
-  display: flex;
-  flex-direction: column;
 }
 
 .taskDescription textarea {
@@ -46,6 +40,7 @@ select {
   padding: 6px;
   outline: none;
 }
+
 
 @media screen and (min-width: 768px) {
   .sidesContainer {

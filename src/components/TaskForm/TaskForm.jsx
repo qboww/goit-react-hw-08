@@ -1,14 +1,32 @@
+// components/TaskForm/TaskForm.js
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Field, Form, Formik, ErrorMessage } from "formik";
-import { useDispatch } from "react-redux";
 import * as yup from "yup";
-
-import css from "./TaskForm.module.css";
-
-import { useId } from "react";
+import Select from "react-select";
 import { addTaskThunk } from "../../redux/tasksOperations";
+import { fetchUsersThunk } from "../../redux/userOperations";
+import { selectUsers } from "../../redux/userSlice";
+import css from "./TaskForm.module.css";
 
 const TaskForm = () => {
   const dispatch = useDispatch();
+  const users = useSelector(selectUsers);
+  const [userOptions, setUserOptions] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchUsersThunk());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setUserOptions(
+      users.map((user) => ({
+        value: user._id,
+        label: user.name,
+      })),
+    );
+  }, [users]);
 
   const initialValues = {
     courseName: "",
@@ -17,6 +35,7 @@ const TaskForm = () => {
     deadlineDate: "",
     mark: "",
     state: "pending",
+    userId: "", 
   };
 
   const validationSchema = yup.object().shape({
@@ -45,6 +64,7 @@ const TaskForm = () => {
       .min(0, "Mark cannot be less than 0")
       .max(100, "Mark cannot exceed 100"),
     state: yup.string().required("State is required"),
+    userId: yup.string().required("User is required"), 
   });
 
   const handleSubmit = (values, actions) => {
@@ -52,12 +72,29 @@ const TaskForm = () => {
     actions.resetForm();
   };
 
-  const courseNameFieldId = useId();
-  const taskNameFieldId = useId();
-  const taskDescriptionFieldId = useId();
-  const deadlineDateFieldId = useId();
-  const markFieldId = useId();
-  const stateFieldId = useId();
+  const selectStyles = {
+    control: (provided) => ({
+      ...provided,
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      padding: "6px 12px",
+      fontSize: "16px",
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      padding: "0",
+    }),
+    input: (provided) => ({
+      ...provided,
+      margin: "0",
+      padding: "0",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      margin: "0",
+      padding: "0",
+    }),
+  };
 
   return (
     <div className="sub-card">
@@ -68,115 +105,134 @@ const TaskForm = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          <Form>
-            <div className={css.sidesContainer}>
-              <div className={css.containerLeft}>
-                <div>
-                  <label htmlFor={courseNameFieldId}>Course Name</label>
-                  <div className="input-error">
-                    <Field
-                      type="text"
-                      id={courseNameFieldId}
-                      name="courseName"
-                      placeholder="Enter course name..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="courseName"
-                      component="span"
-                    />
+          {({ setFieldValue }) => (
+            <Form>
+              <div className={css.sidesContainer}>
+                <div className={css.containerLeft}>
+                  <div>
+                    <label htmlFor="courseName">Course Name</label>
+                    <div className="input-error">
+                      <Field
+                        type="text"
+                        id="courseName"
+                        name="courseName"
+                        placeholder="Enter course name..."
+                      />
+                      <ErrorMessage
+                        className="error"
+                        name="courseName"
+                        component="span"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="taskName">Task Name</label>
+                    <div className="input-error">
+                      <Field
+                        type="text"
+                        id="taskName"
+                        name="taskName"
+                        placeholder="Enter task name..."
+                      />
+                      <ErrorMessage
+                        className="error"
+                        name="taskName"
+                        component="span"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="mark">Mark</label>
+                    <div className="input-error">
+                      <Field
+                        type="number"
+                        id="mark"
+                        name="mark"
+                        placeholder="Enter mark..."
+                      />
+                      <ErrorMessage
+                        className="error"
+                        name="mark"
+                        component="span"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="deadlineDate">Deadline Date</label>
+                    <div className="input-error">
+                      <Field
+                        type="date"
+                        id="deadlineDate"
+                        name="deadlineDate"
+                      />
+                      <ErrorMessage
+                        className="error"
+                        name="deadlineDate"
+                        component="span"
+                      />
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <label htmlFor={taskNameFieldId}>Task Name</label>
-                  <div className="input-error">
-                    <Field
-                      type="text"
-                      id={taskNameFieldId}
-                      name="taskName"
-                      placeholder="Enter task name..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="taskName"
-                      component="span"
-                    />
+                <div className={css.containerRight}>
+                  <div className={css.taskDescription}>
+                    <label htmlFor="taskDescription">Task Description</label>
+                    <div className="input-error">
+                      <Field
+                        rows="4"
+                        cols="28"
+                        as="textarea"
+                        id="taskDescription"
+                        name="taskDescription"
+                        placeholder="Enter task description..."
+                      />
+                      <ErrorMessage
+                        className="error"
+                        name="taskDescription"
+                        component="span"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <label htmlFor={markFieldId}>Mark</label>
-                  <div className="input-error">
-                    <Field
-                      type="number"
-                      id={markFieldId}
-                      name="mark"
-                      placeholder="Enter mark..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="mark"
-                      component="span"
-                    />
+                  <div>
+                    <label htmlFor="state">State</label>
+                    <div className="input-error">
+                      <Field as="select" id="state" name="state">
+                        <option value="pending">Pending</option>
+                        <option value="in progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                      </Field>
+                      <ErrorMessage
+                        className="error"
+                        name="state"
+                        component="span"
+                      />
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <label htmlFor={deadlineDateFieldId}>Deadline Date</label>
-                  <div className="input-error">
-                    <Field
-                      type="date"
-                      id={deadlineDateFieldId}
-                      name="deadlineDate"
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="deadlineDate"
-                      component="span"
-                    />
+                  <div>
+                    <label htmlFor="userId">Assign to User</label>
+                    <div className="input-error">
+                      <Select
+                        id="userId"
+                        name="userId"
+                        options={userOptions}
+                        onChange={(option) =>
+                          setFieldValue("userId", option.value)
+                        }
+                        styles={selectStyles}
+                      />
+                      <ErrorMessage
+                        className="error"
+                        name="userId"
+                        component="span"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className={css.containerRight}>
-                <div className={css.taskDescription}>
-                  <label htmlFor={taskDescriptionFieldId}>
-                    Task Description
-                  </label>
-                  <div className="input-error">
-                    <Field
-                      rows="4"
-                      cols="28"
-                      as="textarea"
-                      id={taskDescriptionFieldId}
-                      name="taskDescription"
-                      placeholder="Enter task description..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="taskDescription"
-                      component="span"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor={stateFieldId}>State</label>
-                  <div className="input-error">
-                    <Field as="select" id={stateFieldId} name="state">
-                      <option value="pending">Pending</option>
-                      <option value="in progress">In Progress</option>
-                      <option value="completed">Completed</option>
-                    </Field>
-                    <ErrorMessage
-                      className="error"
-                      name="state"
-                      component="span"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button aria-label="Add Task" className={css.btn} type="submit">
-              Add task
-            </button>
-          </Form>
+              <button aria-label="Add Task" className={css.btn} type="submit">
+                Add task
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>
