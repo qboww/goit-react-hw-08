@@ -1,20 +1,32 @@
 import { useState } from "react";
 import css from "./AdminTable.module.css";
 
-const AdminTable = ({ contacts, onSave, onDelete }) => {
-  const [editingContactId, setEditingContactId] = useState(null);
-  const [editName, setEditName] = useState("");
-  const [editNumber, setEditNumber] = useState("");
+const AdminTable = ({ tasks, onSave, onDelete }) => {
+  const [editingTaskId, setEditingTaskId] = useState(null);
+  const [editTask, setEditTask] = useState({
+    courseName: "",
+    taskName: "",
+    taskDescription: "",
+    deadlineDate: "",
+    mark: "",
+    state: "pending",
+  });
 
-  const handleEdit = (contact) => {
-    setEditingContactId(contact._id);
-    setEditName(contact.name);
-    setEditNumber(contact.number);
+  const handleEdit = (task) => {
+    setEditingTaskId(task._id);
+    setEditTask({
+      courseName: task.courseName,
+      taskName: task.taskName,
+      taskDescription: task.taskDescription,
+      deadlineDate: task.deadlineDate,
+      mark: task.mark,
+      state: task.state,
+    });
   };
 
   const handleSave = (id) => {
-    onSave(id, editName, editNumber);
-    setEditingContactId(null);
+    onSave(id, editTask);
+    setEditingTaskId(null);
   };
 
   return (
@@ -22,46 +34,110 @@ const AdminTable = ({ contacts, onSave, onDelete }) => {
       <table className={css.customTable}>
         <thead className={css.customHead}>
           <tr className={css.customRow}>
-            <th className={css.customH}>Name</th>
-            <th className={css.customH}>Number</th>
+            <th className={css.customH}>Course Name</th>
+            <th className={css.customH}>Task Name</th>
+            <th className={css.customH}>Description</th>
+            <th className={css.customH}>Deadline</th>
+            <th className={css.customH}>Mark</th>
+            <th className={css.customH}>State</th>
             <th className={css.customH}>Actions</th>
           </tr>
         </thead>
         <tbody className={css.customBody}>
-          {contacts.map((contact) => (
-            <tr key={contact._id} className={css.customRow}>
+          {tasks.map((task) => (
+            <tr key={task._id} className={css.customRow}>
               <td className={css.customCell}>
-                {editingContactId === contact._id ? (
+                {editingTaskId === task._id ? (
                   <input
                     type="text"
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
+                    value={editTask.courseName}
+                    onChange={(e) =>
+                      setEditTask({ ...editTask, courseName: e.target.value })
+                    }
                   />
                 ) : (
-                  contact.name
+                  task.courseName
                 )}
               </td>
               <td className={css.customCell}>
-                {editingContactId === contact._id ? (
+                {editingTaskId === task._id ? (
                   <input
                     type="text"
-                    value={editNumber}
-                    onChange={(e) => setEditNumber(e.target.value)}
+                    value={editTask.taskName}
+                    onChange={(e) =>
+                      setEditTask({ ...editTask, taskName: e.target.value })
+                    }
                   />
                 ) : (
-                  contact.number
+                  task.taskName
+                )}
+              </td>
+              <td className={css.customCell}>
+                {editingTaskId === task._id ? (
+                  <input
+                    type="text"
+                    value={editTask.taskDescription}
+                    onChange={(e) =>
+                      setEditTask({
+                        ...editTask,
+                        taskDescription: e.target.value,
+                      })
+                    }
+                  />
+                ) : (
+                  task.taskDescription
+                )}
+              </td>
+              <td className={css.customCell}>
+                {editingTaskId === task._id ? (
+                  <input
+                    type="date"
+                    value={editTask.deadlineDate}
+                    onChange={(e) =>
+                      setEditTask({ ...editTask, deadlineDate: e.target.value })
+                    }
+                  />
+                ) : (
+                  new Date(task.deadlineDate).toLocaleDateString()
+                )}
+              </td>
+              <td className={css.customCell}>
+                {editingTaskId === task._id ? (
+                  <input
+                    type="number"
+                    value={editTask.mark}
+                    onChange={(e) =>
+                      setEditTask({ ...editTask, mark: e.target.value })
+                    }
+                  />
+                ) : (
+                  task.mark
+                )}
+              </td>
+              <td className={css.customCell}>
+                {editingTaskId === task._id ? (
+                  <select
+                    value={editTask.state}
+                    onChange={(e) =>
+                      setEditTask({ ...editTask, state: e.target.value })
+                    }
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                ) : (
+                  task.state
                 )}
               </td>
               <td className={`${css.customCell} ${css.customActions}`}>
                 <div className={css.customButtons}>
-                  {editingContactId === contact._id ? (
-                    <button onClick={() => handleSave(contact._id)}>
-                      Save
-                    </button>
+                  {editingTaskId === task._id ? (
+                    <button onClick={() => handleSave(task._id)}>Save</button>
                   ) : (
-                    <button onClick={() => handleEdit(contact)}>Edit</button>
+                    <button onClick={() => handleEdit(task)}>Edit</button>
                   )}
-                  <button onClick={() => onDelete(contact._id)}>Delete</button>
+                  <button onClick={() => onDelete(task._id)}>Delete</button>
                 </div>
               </td>
             </tr>

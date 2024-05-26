@@ -1,25 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAllContactsThunk,
-  deleteContactAdminThunk,
-  editContactAdminThunk,
-} from "../../redux/contactsOperations";
+  fetchAllTasksThunk,
+  deleteTaskAdminThunk,
+  editTaskAdminThunk,
+} from "../../redux/tasksOperations";
 import {
-  addContact,
-  updateContact,
-  deleteContact,
-  selectContacts,
-} from "../../redux/contactsSlice";
+  addTask,
+  updateTask,
+  deleteTask,
+  selectTasks,
+} from "../../redux/tasksSlice";
 import AdminTable from "../../components/AdminTable/AdminTable";
 import css from "./AdminPage.module.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const tasks = useSelector(selectTasks);
 
   useEffect(() => {
-    dispatch(fetchAllContactsThunk());
+    dispatch(fetchAllTasksThunk());
 
     const eventSource = new EventSource("http://localhost:5000/events");
 
@@ -27,14 +27,14 @@ const AdminPage = () => {
       const parsedData = JSON.parse(event.data);
 
       switch (parsedData.type) {
-        case "ADD_CONTACT":
-          dispatch(addContact(parsedData.payload));
+        case "ADD_TASK":
+          dispatch(addTask(parsedData.payload));
           break;
-        case "UPDATE_CONTACT":
-          dispatch(updateContact(parsedData.payload));
+        case "UPDATE_TASK":
+          dispatch(updateTask(parsedData.payload));
           break;
-        case "DELETE_CONTACT":
-          dispatch(deleteContact(parsedData.payload));
+        case "DELETE_TASK":
+          dispatch(deleteTask(parsedData.payload));
           break;
         default:
           break;
@@ -42,7 +42,7 @@ const AdminPage = () => {
     };
 
     const pollInterval = setInterval(() => {
-      dispatch(fetchAllContactsThunk());
+      dispatch(fetchAllTasksThunk());
     }, 5000); // Poll every 5 seconds
 
     return () => {
@@ -51,12 +51,12 @@ const AdminPage = () => {
     };
   }, [dispatch]);
 
-  const handleSave = (id, name, number) => {
-    dispatch(editContactAdminThunk({ id, name, number }));
+  const handleSave = (id, updatedTask) => {
+    dispatch(editTaskAdminThunk({ id, ...updatedTask }));
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteContactAdminThunk(id));
+    dispatch(deleteTaskAdminThunk(id));
   };
 
   return (
@@ -65,12 +65,12 @@ const AdminPage = () => {
         <div className={css.subCard}>
           <div className={css.wrapperText}>
             <h1>Admin Page</h1>
-            <p>Here you are able to edit and delete contacts</p>
+            <p>Here you are able to edit and delete tasks</p>
           </div>
         </div>
         <div className={css.subCard}>
           <AdminTable
-            contacts={contacts}
+            tasks={tasks}
             onSave={handleSave}
             onDelete={handleDelete}
           />

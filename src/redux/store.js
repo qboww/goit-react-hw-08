@@ -1,6 +1,6 @@
-// store.js;
+// store.js
 import { configureStore } from "@reduxjs/toolkit";
-import { contactsReducer } from "./contactsSlice";
+import { tasksReducer } from "./tasksSlice";
 
 import { authReducer } from "./authSlice";
 import {
@@ -26,7 +26,7 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer,
+    tasks: tasksReducer,
     filters: filtersReducer,
     auth: persistReducer(persistConfig, authReducer),
   },

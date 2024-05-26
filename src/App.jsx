@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import HomePage from "./pages/HomePage/HomePage";
-import ContactsPage from "./pages/ContactsPage/ContactsPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import PublicRoute from "./routes/PublicRoute";
@@ -49,10 +49,10 @@ export default function App() {
           }
         />
         <Route
-          path="contacts"
+          path="tasks"
           element={
             <PrivateRoute>
-              <ContactsPage />
+              <TasksPage />
             </PrivateRoute>
           }
         />
