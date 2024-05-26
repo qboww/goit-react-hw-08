@@ -1,7 +1,6 @@
 .error {
   color: red;
   border-bottom: 1px solid;
-  margin-left: 16px;
 }
 
 .addPerson {
@@ -21,4 +20,79 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.addTask {
+  font-size: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid grey;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.containerLeft,
+.containerRight {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn {
+  width: fit-content;
+}
+
+.containerLeft div,
+.containerRight div{
+  display: flex;
+  flex-direction: column;
+}
+
+.taskDescription textarea {
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 8px 16px;
+  color: black;
+}
+
+select {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+  padding: 6px;
+}
+
+.fieldError{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .sidesContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+  }
+
+  .containerRight,
+  .containerLeft {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 }

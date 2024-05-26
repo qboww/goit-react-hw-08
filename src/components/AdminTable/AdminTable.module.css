@@ -50,18 +50,95 @@
 .customH {
   border-bottom: 1px solid #323232;
   color: black;
-  padding-bottom: 16px;
+
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .customButtons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   gap: 3px;
 }
 
-.customActions {
-  width: 100px;
+.customButtons button {
+  max-width: 100%;
+  width: 100%;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.customTable input[type="text"],
+.customTable input[type="number"],
+.customTable input[type="date"],
+.customTable textarea,
+.customTable select {
+  width: 100%;
+  max-width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.customTable input[type="date"] {
+  max-width: 90px;
+  width: 100%;
+  text-align: center;
+}
+
+.customTable input[type="number"] {
+  max-width: 32px;
+  width: 100%;
+  text-align: center;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.customH {
+  font-size: 16px;
+}
+
+.customCell {
+  font-size: 14px;
+}
+
+.customTable textarea {
+  width: 250px;
+  height: 50px;
+  resize: vertical;
+}
+
+.customTable select {
+  width: 100%;
+}
+
+.manageTasks {
+  font-size: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid grey;
+}
+
+@media screen and (min-width: 768px) {
+  .customButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 3px;
+  }
+
+  .customButtons button {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  .customH {
+    font-size: 16px;
+  }
+
+  .customCell {
+    font-size: 16px;
+  }
 }

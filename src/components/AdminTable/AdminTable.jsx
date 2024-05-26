@@ -1,7 +1,6 @@
 import { useState } from "react";
 import css from "./AdminTable.module.css";
 
-// Function to format date to "yyyy-MM-dd"
 const formatDate = (dateString) => {
   const date = new Date(dateString);
   const year = date.getFullYear();
@@ -27,7 +26,7 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
       courseName: task.courseName,
       taskName: task.taskName,
       taskDescription: task.taskDescription,
-      deadlineDate: formatDate(task.deadlineDate), // Format date here
+      deadlineDate: formatDate(task.deadlineDate),
       mark: task.mark,
       state: task.state,
     });
@@ -40,34 +39,19 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
 
   return (
     <div className={css.subContainer}>
+      <h2 className={css.manageTasks}>Manage tasks</h2>
       <table className={css.customTable}>
         <thead className={css.customHead}>
           <tr className={css.customRow}>
-            <th className={css.customH}>Course Name</th>
             <th className={css.customH}>Task Name</th>
-            <th className={css.customH}>Description</th>
             <th className={css.customH}>Deadline</th>
             <th className={css.customH}>Mark</th>
-            <th className={css.customH}>State</th>
             <th className={css.customH}>Actions</th>
           </tr>
         </thead>
         <tbody className={css.customBody}>
           {tasks.map((task) => (
             <tr key={task._id} className={css.customRow}>
-              <td className={css.customCell}>
-                {editingTaskId === task._id ? (
-                  <input
-                    type="text"
-                    value={editTask.courseName}
-                    onChange={(e) =>
-                      setEditTask({ ...editTask, courseName: e.target.value })
-                    }
-                  />
-                ) : (
-                  task.courseName
-                )}
-              </td>
               <td className={css.customCell}>
                 {editingTaskId === task._id ? (
                   <input
@@ -79,22 +63,6 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
                   />
                 ) : (
                   task.taskName
-                )}
-              </td>
-              <td className={css.customCell}>
-                {editingTaskId === task._id ? (
-                  <input
-                    type="text"
-                    value={editTask.taskDescription}
-                    onChange={(e) =>
-                      setEditTask({
-                        ...editTask,
-                        taskDescription: e.target.value,
-                      })
-                    }
-                  />
-                ) : (
-                  task.taskDescription
                 )}
               </td>
               <td className={css.customCell}>
@@ -121,22 +89,6 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
                   />
                 ) : (
                   task.mark
-                )}
-              </td>
-              <td className={css.customCell}>
-                {editingTaskId === task._id ? (
-                  <select
-                    value={editTask.state}
-                    onChange={(e) =>
-                      setEditTask({ ...editTask, state: e.target.value })
-                    }
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="in progress">In Progress</option>
-                    <option value="completed">Completed</option>
-                  </select>
-                ) : (
-                  task.state
                 )}
               </td>
               <td className={`${css.customCell} ${css.customActions}`}>

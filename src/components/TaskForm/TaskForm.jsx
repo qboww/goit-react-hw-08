@@ -1,4 +1,3 @@
-// TaskForm.js
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
@@ -70,85 +69,113 @@ const TaskForm = () => {
           onSubmit={handleSubmit}
         >
           <Form>
-            <div>
-              <label htmlFor={courseNameFieldId}>Course Name</label>
-              <Field
-                type="text"
-                id={courseNameFieldId}
-                name="courseName"
-                placeholder="Enter course name..."
-              />
-              <ErrorMessage
-                className={css.error}
-                name="courseName"
-                component="span"
-              />
+            <div className={css.sidesContainer}>
+              <div className={css.containerLeft}>
+                <div>
+                  <label htmlFor={courseNameFieldId}>Course Name</label>
+                  <div className={css.fieldError}>
+                    <Field
+                      type="text"
+                      id={courseNameFieldId}
+                      name="courseName"
+                      placeholder="Enter course name..."
+                    />
+                    <ErrorMessage
+                      className={css.error}
+                      name="courseName"
+                      component="span"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor={taskNameFieldId}>Task Name</label>
+                  <div className={css.fieldError}>
+                    <Field
+                      type="text"
+                      id={taskNameFieldId}
+                      name="taskName"
+                      placeholder="Enter task name..."
+                    />
+                    <ErrorMessage
+                      className={css.error}
+                      name="taskName"
+                      component="span"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor={markFieldId}>Mark</label>
+                  <div className={css.fieldError}>
+                    <Field
+                      type="number"
+                      id={markFieldId}
+                      name="mark"
+                      placeholder="Enter mark..."
+                    />
+                    <ErrorMessage
+                      className={css.error}
+                      name="mark"
+                      component="span"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor={deadlineDateFieldId}>Deadline Date</label>
+                  <div className={css.fieldError}>
+                    <Field
+                      type="date"
+                      id={deadlineDateFieldId}
+                      name="deadlineDate"
+                    />
+                    <ErrorMessage
+                      className={css.error}
+                      name="deadlineDate"
+                      component="span"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={css.containerRight}>
+                <div className={css.taskDescription}>
+                  <label htmlFor={taskDescriptionFieldId}>
+                    Task Description
+                  </label>
+                  <div className={css.fieldError}>
+                    <Field
+                      rows="4"
+                      cols="28"
+                      as="textarea"
+                      id={taskDescriptionFieldId}
+                      name="taskDescription"
+                      placeholder="Enter task description..."
+                    />
+                    <ErrorMessage
+                      className={css.error}
+                      name="taskDescription"
+                      component="span"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor={stateFieldId}>State</label>
+                  <div className={css.fieldError}>
+                    <Field as="select" id={stateFieldId} name="state">
+                      <option value="pending">Pending</option>
+                      <option value="in progress">In Progress</option>
+                      <option value="completed">Completed</option>
+                    </Field>
+                    <ErrorMessage
+                      className={css.error}
+                      name="state"
+                      component="span"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <label htmlFor={taskNameFieldId}>Task Name</label>
-              <Field
-                type="text"
-                id={taskNameFieldId}
-                name="taskName"
-                placeholder="Enter task name..."
-              />
-              <ErrorMessage
-                className={css.error}
-                name="taskName"
-                component="span"
-              />
-            </div>
-            <div>
-              <label htmlFor={taskDescriptionFieldId}>Task Description</label>
-              <Field
-                type="text"
-                id={taskDescriptionFieldId}
-                name="taskDescription"
-                placeholder="Enter task description..."
-              />
-              <ErrorMessage
-                className={css.error}
-                name="taskDescription"
-                component="span"
-              />
-            </div>
-            <div>
-              <label htmlFor={deadlineDateFieldId}>Deadline Date</label>
-              <Field type="date" id={deadlineDateFieldId} name="deadlineDate" />
-              <ErrorMessage
-                className={css.error}
-                name="deadlineDate"
-                component="span"
-              />
-            </div>
-            <div>
-              <label htmlFor={markFieldId}>Mark</label>
-              <Field
-                type="number"
-                id={markFieldId}
-                name="mark"
-                placeholder="Enter mark..."
-              />
-              <ErrorMessage
-                className={css.error}
-                name="mark"
-                component="span"
-              />
-            </div>
-            <div>
-              <label htmlFor={stateFieldId}>State</label>
-              <Field as="select" id={stateFieldId} name="state">
-                <option value="pending">Pending</option>
-                <option value="in progress">In Progress</option>
-                <option value="completed">Completed</option>
-              </Field>
-              <ErrorMessage
-                className={css.error}
-                name="state"
-                component="span"
-              />
-            </div>
-            <button type="submit">Add task</button>
+            <button className={css.btn} type="submit">
+              Add task
+            </button>
           </Form>
         </Formik>
       </div>

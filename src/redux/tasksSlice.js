@@ -8,7 +8,6 @@ import {
   fetchAllTasksThunk,
   deleteTaskAdminThunk,
   editTaskAdminThunk,
-  createTaskAdminThunk,
 } from "./tasksOperations";
 import { logoutThunk } from "./authOperations";
 import toast from "react-hot-toast";
@@ -67,11 +66,6 @@ const tasksSlice = createSlice({
         state.isLoading = false;
         toast.success(`Task ${payload.taskName} was added`);
       })
-      .addCase(createTaskAdminThunk.fulfilled, (state, { payload }) => {
-        state.items.push(payload);
-        state.isLoading = false;
-        toast.success(`Task ${payload.taskName} was added by admin`);
-      })
       .addCase(editTaskThunk.fulfilled, (state, { payload }) => {
         const item = state.items.find((item) => item._id === payload._id);
         if (item) {
@@ -105,7 +99,6 @@ const tasksSlice = createSlice({
           fetchAllTasksThunk.pending,
           deleteTaskAdminThunk.pending,
           editTaskAdminThunk.pending,
-          createTaskAdminThunk.pending,
         ),
         (state) => {
           state.isLoading = true;
@@ -120,7 +113,6 @@ const tasksSlice = createSlice({
           fetchAllTasksThunk.rejected,
           deleteTaskAdminThunk.rejected,
           editTaskAdminThunk.rejected,
-          createTaskAdminThunk.rejected,
         ),
         (state, { payload }) => {
           state.isError = payload;

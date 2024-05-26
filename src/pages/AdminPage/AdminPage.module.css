@@ -27,6 +27,9 @@
 }
 
 .subCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   padding: 16px;
   border: 1px solid grey;
   border-radius: 8px;

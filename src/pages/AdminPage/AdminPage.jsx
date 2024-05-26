@@ -9,15 +9,16 @@ import {
   addTask,
   updateTask,
   deleteTask,
-  selectTasks,
+  selectFilteredTasks,
 } from "../../redux/tasksSlice";
 import AdminTable from "../../components/AdminTable/AdminTable";
 import TaskForm from "../../components/TaskForm/TaskForm";
+import SearchBox from "../../components/SearchBox/SearchBox";
 import css from "./AdminPage.module.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector(selectTasks);
+  const tasks = useSelector(selectFilteredTasks);
 
   useEffect(() => {
     dispatch(fetchAllTasksThunk());
@@ -44,7 +45,7 @@ const AdminPage = () => {
 
     const pollInterval = setInterval(() => {
       dispatch(fetchAllTasksThunk());
-    }, 5000); // Poll every 5 seconds
+    }, 5000); 
 
     return () => {
       eventSource.close();
@@ -71,6 +72,7 @@ const AdminPage = () => {
         </div>
         <div className={css.subCard}>
           <TaskForm />
+          <SearchBox />
           <AdminTable
             tasks={tasks}
             onSave={handleSave}

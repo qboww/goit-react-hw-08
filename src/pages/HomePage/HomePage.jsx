@@ -5,8 +5,8 @@ const HomePage = () => {
     <div className="container">
       <div className={css.subContainer}>
         <div className={css.wrapper}>
-          <h1>Your Phonebook</h1>
-          <p>Welcome to your contact book!</p>
+          <h1>Courses Tracker</h1>
+          <p>Lets dive into learning together!</p>
         </div>
       </div>
     </div>
