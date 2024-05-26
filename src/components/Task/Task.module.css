@@ -1,0 +1,21 @@
+.contactContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contactIcon {
+  margin-right: 8px;
+}
