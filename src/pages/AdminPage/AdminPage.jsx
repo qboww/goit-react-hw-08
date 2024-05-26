@@ -9,14 +9,14 @@ import {
   addContact,
   updateContact,
   deleteContact,
-  selectContacts,
+  selectFilteredContacts,
 } from "../../redux/contactsSlice";
 import AdminTable from "../../components/AdminTable/AdminTable";
-import css from "./AdminPage.module.css";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectFilteredContacts);
 
   useEffect(() => {
     dispatch(fetchAllContactsThunk());
@@ -43,7 +43,7 @@ const AdminPage = () => {
 
     const pollInterval = setInterval(() => {
       dispatch(fetchAllContactsThunk());
-    }, 5000); // Poll every 5 seconds
+    }, 5000);
 
     return () => {
       eventSource.close();
@@ -61,14 +61,15 @@ const AdminPage = () => {
 
   return (
     <div className="container">
-      <div className={css.wrapper}>
-        <div className={css.subCard}>
-          <div className={css.wrapperText}>
+      <div className="wrapper">
+        <div className="card">
+          <div className="card-desc">
             <h1>Admin Page</h1>
             <p>Here you are able to edit and delete contacts</p>
           </div>
         </div>
-        <div className={css.subCard}>
+        <div className="card">
+          <SearchBox />
           <AdminTable
             contacts={contacts}
             onSave={handleSave}

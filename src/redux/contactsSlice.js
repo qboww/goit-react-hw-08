@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 import {
   addContactsThunk,
   deleteContactsThunk,
@@ -10,7 +10,6 @@ import {
 } from "./contactsOperations";
 import { logoutThunk } from "./authOperations";
 import toast from "react-hot-toast";
-import { createSelector } from "@reduxjs/toolkit";
 import { selectNameFilter, selectNumberFilter } from "./filtersSlice";
 
 const initialState = {
@@ -82,34 +81,54 @@ const contactsSlice = createSlice({
       .addCase(logoutThunk.fulfilled, () => {
         return initialState;
       })
-      .addMatcher(
-        isAnyOf(
-          fetchContactsThunk.pending,
-          deleteContactsThunk.pending,
-          addContactsThunk.pending,
-          fetchAllContactsThunk.pending,
-          deleteContactAdminThunk.pending,
-          editContactAdminThunk.pending,
-        ),
-        (state) => {
-          state.isLoading = true;
-          state.isError = false;
-        },
-      )
-      .addMatcher(
-        isAnyOf(
-          fetchContactsThunk.rejected,
-          deleteContactsThunk.rejected,
-          addContactsThunk.rejected,
-          fetchAllContactsThunk.rejected,
-          deleteContactAdminThunk.rejected,
-          editContactAdminThunk.rejected,
-        ),
-        (state, { payload }) => {
-          state.isError = payload;
-          state.isLoading = false;
-        },
-      );
+      .addCase(fetchContactsThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(deleteContactsThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(addContactsThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchAllContactsThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(deleteContactAdminThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(editContactAdminThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchContactsThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
+      })
+      .addCase(deleteContactsThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
+      })
+      .addCase(addContactsThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchAllContactsThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
+      })
+      .addCase(deleteContactAdminThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
+      })
+      .addCase(editContactAdminThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
+      });
   },
 });
 

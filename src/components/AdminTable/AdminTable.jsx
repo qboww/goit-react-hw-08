@@ -18,7 +18,7 @@ const AdminTable = ({ contacts, onSave, onDelete }) => {
   };
 
   return (
-    <div className={css.subContainer}>
+    <div className="sub-card">
       <table className={css.customTable}>
         <thead className={css.customHead}>
           <tr className={css.customRow}>

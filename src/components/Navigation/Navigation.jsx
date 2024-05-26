@@ -21,7 +21,7 @@ const Navigation = () => {
       )}
       {isLoggedIn && userRole === "admin" && (
         <NavLink to="/admin" className={css.link}>
-          Admin Panel
+          Admin
         </NavLink>
       )}
     </nav>

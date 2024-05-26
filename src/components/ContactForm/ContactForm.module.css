@@ -1,20 +1,17 @@
-.error {
-  color: red;
-  border-bottom: 1px solid;
-  margin-left: 16px;
+input {
+  max-width: 235px;
+  width: 100%;
 }
 
-.addPerson {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .contactForm input {
   max-width: 235px;
   width: 100%;
-  margin-bottom: 16px;
 }
 
 input::-webkit-outer-spin-button,

@@ -43,7 +43,14 @@ h2 {
   font-weight: 500;
 }
 
+p {
+  line-height: 1.15;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+}
+
 button {
+  width: fit-content;
   cursor: pointer;
   color: white;
   background-color: #323232;
@@ -62,18 +69,50 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 16px;
-
   background-color: #fff;
   color: black;
-  padding: 32px;
-  border-radius: 16px;
-  margin: 32px 0px;
+  padding: 16px;
+  border-radius: 8px;
 }
 
 .sub-card {
   padding: 16px;
   border: 1px solid grey;
   border-radius: 8px;
+}
+
+.component-title {
+  font-size: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid grey;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  padding: 32px 16px;
+  background-color: #fff;
+}
+
+.error {
+  color: red;
+}
+
+.input-error {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .container {

@@ -40,46 +40,46 @@ const ContactForm = () => {
 
   return (
     <div className="sub-card">
-      <h2 className={css.addPerson}>Add a person</h2>
-      <div className={css.contactForm}>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          <Form>
+      <h2 className="component-title">Add a person</h2>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        <Form>
+          <div className={css.contactForm}>
             <div>
               <label htmlFor={nameFieldId}>Name</label>
-              <Field
-                type="text"
-                id={nameFieldId}
-                name="name"
-                placeholder="Enter name..."
-              />
-              <ErrorMessage
-                className={css.error}
-                name="name"
-                component="span"
-              />
+              <div className="input-error">
+                <Field
+                  type="text"
+                  id={nameFieldId}
+                  name="name"
+                  placeholder="Enter name..."
+                />
+                <ErrorMessage className="error" name="name" component="span" />
+              </div>
             </div>
             <div>
               <label htmlFor={numberFieldId}>Number</label>
-              <Field
-                type="text"
-                id={numberFieldId}
-                name="number"
-                placeholder="Enter phone number..."
-              />
-              <ErrorMessage
-                className={css.error}
-                name="number"
-                component="span"
-              />
+              <div className="input-error">
+                <Field
+                  type="text"
+                  id={numberFieldId}
+                  name="number"
+                  placeholder="Enter phone number..."
+                />
+                <ErrorMessage
+                  className="error"
+                  name="number"
+                  component="span"
+                />
+              </div>
             </div>
             <button type="submit">Add contact</button>
-          </Form>
-        </Formik>
-      </div>
+          </div>
+        </Form>
+      </Formik>
     </div>
   );
 };

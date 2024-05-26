@@ -1,26 +1,15 @@
-.form {
-  padding: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;
-  background-color: #fff;
-  color: black;
-}
-
 .linkContainer {
   margin-top: 16px;
 }
 
 .inputsContainer {
-  border: 1px solid grey;
-  padding: 16px;
   border-radius: 8px;
-
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.input {
+.inputContainer input {
   max-width: 350px;
   width: 100%;
 }
@@ -33,20 +22,9 @@
 .btnContainer {
   display: flex;
   justify-content: center;
+  padding-top: 16px;
 }
 
 .link {
   color: black;
-}
-
-.error {
-  color: red;
-  margin-left: 16px;
-}
-
-.register {
-  font-size: 24px;
-  padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
 }

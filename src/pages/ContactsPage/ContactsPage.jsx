@@ -38,7 +38,7 @@ const ContactsPage = () => {
 
     const pollInterval = setInterval(() => {
       dispatch(fetchContactsThunk());
-    }, 5000); // Poll every 5 seconds
+    }, 5000);
 
     return () => {
       eventSource.close();
@@ -48,11 +48,18 @@ const ContactsPage = () => {
 
   return (
     <div className="container">
-      <div className="card">
-        <h1>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-        <ContactList />
+      <div className="wrapper">
+        <div className="card">
+          <div className="card-desc">
+            <h1>Contacts page</h1>
+            <p>Here you are able to add and delete contacts</p>
+          </div>
+        </div>
+        <div className="card">
+          <ContactForm />
+          <SearchBox />
+          <ContactList />
+        </div>
       </div>
     </div>
   );
