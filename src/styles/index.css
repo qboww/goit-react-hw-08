@@ -43,6 +43,12 @@ h2 {
   font-weight: 500;
 }
 
+p {
+  line-height: 1.15;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+}
+
 button {
   width: fit-content;
   cursor: pointer;
@@ -99,7 +105,7 @@ button:hover {
   background-color: #fff;
 }
 
-.error{
+.error {
   color: red;
 }
 
