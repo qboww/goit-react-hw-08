@@ -23,7 +23,7 @@ const TaskForm = () => {
     courseName: yup
       .string()
       .required("Course name is required")
-      .min(3, "Course name must be at least 3 characters")
+      .min(2, "Course name must be at least 2 characters")
       .max(50, "Course name cannot exceed 50 characters")
       .trim(),
     taskName: yup

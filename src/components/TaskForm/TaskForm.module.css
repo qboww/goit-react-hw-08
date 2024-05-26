@@ -73,6 +73,7 @@ select {
   border: 1px solid black;
   color: black;
   padding: 6px;
+  outline: none;
 }
 
 .fieldError{

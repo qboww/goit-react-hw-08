@@ -1,23 +1,26 @@
-.wrapper {
+.subCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  background-color: #fff;
+  color: black;
+}
+
+.wrapperText {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   border: 1px solid grey;
   border-radius: 8px;
-  padding: 64px 16px;
-}
-
-.subContainer {
-  padding: 16px;
-  border: 1px solid grey;
-  border-radius: 8px;
+  padding: 32px 16px;
   background-color: #fff;
-  color: black;
-  padding: 16px;
 }
 
-.homeContainer{
+.wrapper{
   display: flex;
   flex-direction: column;
   gap: 16px;

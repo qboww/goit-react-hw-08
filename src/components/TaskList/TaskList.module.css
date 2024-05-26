@@ -1,4 +1,4 @@
-.contactsList {
+.tasksList {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -19,4 +19,9 @@
 .listParams p {
   font-size: 14px;
   padding-top: 6px;
+}
+
+.checkTask {
+  font-size: 24px;
+  padding-bottom: 16px;
 }

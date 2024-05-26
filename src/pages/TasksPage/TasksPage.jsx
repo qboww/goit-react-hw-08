@@ -1,10 +1,10 @@
-// TasksPage.js
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import TaskList from "../../components/TaskList/TaskList";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { fetchTasksThunk } from "../../redux/tasksOperations";
 import { addTask, updateTask, deleteTask } from "../../redux/tasksSlice";
+import css from "./TaskPage.module.css";
 
 const TasksPage = () => {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const TasksPage = () => {
 
     const pollInterval = setInterval(() => {
       dispatch(fetchTasksThunk());
-    }, 5000); // Poll every 5 seconds
+    }, 5000);
 
     return () => {
       eventSource.close();
@@ -44,10 +44,17 @@ const TasksPage = () => {
 
   return (
     <div className="container">
-      <div className="card">
-        <h1>Task Tracker</h1>
-        <SearchBox />
-        <TaskList />
+      <div className={css.wrapper}>
+        <div className={css.subCard}>
+          <div className={css.wrapperText}>
+            <h1>Tasks Page</h1>
+            <p>Here you are able to view managed tasks!</p>
+          </div>
+        </div>
+        <div className={css.subCard}>
+          <SearchBox />
+          <TaskList />
+        </div>
       </div>
     </div>
   );

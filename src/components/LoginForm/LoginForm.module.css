@@ -33,11 +33,6 @@
   width: 100%;
 }
 
-.error {
-  color: red;
-  margin-left: 16px;
-}
-
 .login {
   font-size: 24px;
   padding-bottom: 16px;
@@ -53,4 +48,15 @@
 .btnContainer {
   display: flex;
   justify-content: center;
+  padding-top: 16px;
+}
+
+.inputError{
+  display: flex;
+  flex-direction: column;
+   gap: 4px;
+}
+
+.error {
+  color: red;
 }

@@ -1,32 +1,31 @@
 // Task.js
-import { FaTasks } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import css from "./Task.module.css";
-import { useDispatch } from "react-redux";
-import { deleteTaskThunk } from "../../redux/tasksOperations";
 
 export const Task = ({ item }) => {
-  const dispatch = useDispatch();
-
   return (
-    <div className={css.taskContainer}>
-      <div className={css.taskItem}>
-        <p>
-          <FaTasks className={css.taskIcon} />
-          {item.taskName}
-        </p>
-        <p>
-          <FaCalendarAlt className={css.taskIcon} />
-          {new Date(item.deadlineDate).toLocaleDateString()}
-        </p>
-        <p>Course: {item.courseName}</p>
-        <p>Description: {item.taskDescription}</p>
-        <p>Mark: {item.mark}</p>
-        <p>Status: {item.state}</p>
+    <div>
+      <div className={css.taskContainer}>
+        <div className={css.taskItem}>
+          <div className={css.nameDate}>
+            <h2 className={css.taskName}>{item.taskName}</h2>
+            <p>
+              <FaCalendarAlt className={css.taskIcon} />
+              {new Date(item.deadlineDate).toLocaleDateString()}
+            </p>
+          </div>
+
+          <div>
+            <p className={css.taskDescription}>{item.taskDescription}</p>
+          </div>
+
+          <div className={css.badges}>
+            <p className={css.course}>Course: {item.courseName}</p>
+            <p className={css.mark}>Mark: {item.mark}</p>
+            <p className={css.pending}>Status: {item.state}</p>
+          </div>
+        </div>
       </div>
-      <button onClick={() => dispatch(deleteTaskThunk(item._id))}>
-        Delete
-      </button>
     </div>
   );
 };

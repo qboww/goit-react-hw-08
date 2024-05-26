@@ -33,15 +33,11 @@
 .btnContainer {
   display: flex;
   justify-content: center;
+  padding-top: 16px;
 }
 
 .link {
   color: black;
-}
-
-.error {
-  color: red;
-  margin-left: 16px;
 }
 
 .register {
@@ -49,4 +45,14 @@
   padding-bottom: 16px;
   margin-bottom: 16px;
   border-bottom: 1px solid grey;
+}
+
+.inputError {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.error {
+  color: red;
 }

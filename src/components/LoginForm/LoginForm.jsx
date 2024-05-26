@@ -46,33 +46,37 @@ const LoginForm = () => {
               <div className={css.inputContainer}>
                 <h2 className={css.login}>Login</h2>
                 <label htmlFor={emailFieldId}>Email</label>
-                <Field
-                  className={css.input}
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email..."
-                  id={emailFieldId}
-                />
-                <ErrorMessage
-                  className={css.error}
-                  name="email"
-                  component="span"
-                />
+                <div className={css.inputError}>
+                  <Field
+                    className={css.input}
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email..."
+                    id={emailFieldId}
+                  />
+                  <ErrorMessage
+                    className={css.error}
+                    name="email"
+                    component="span"
+                  />
+                </div>
               </div>
               <div className={css.inputContainer}>
                 <label htmlFor={passwordFieldId}>Password</label>
-                <Field
-                  className={css.input}
-                  type="text"
-                  name="password"
-                  placeholder="Enter your password..."
-                  id={passwordFieldId}
-                />
-                <ErrorMessage
-                  className={css.error}
-                  name="password"
-                  component="span"
-                />
+                <div className={css.inputError}>
+                  <Field
+                    className={css.input}
+                    type="text"
+                    name="password"
+                    placeholder="Enter your password..."
+                    id={passwordFieldId}
+                  />
+                  <ErrorMessage
+                    className={css.error}
+                    name="password"
+                    component="span"
+                  />
+                </div>
 
                 <label className={css.labelContainer}>
                   <Link to="/register" className={css.loginLabel}>
