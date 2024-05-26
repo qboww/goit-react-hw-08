@@ -2,7 +2,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./styles/index.css";
 import "modern-normalize";
-
 import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store.js";
 import { BrowserRouter } from "react-router-dom";

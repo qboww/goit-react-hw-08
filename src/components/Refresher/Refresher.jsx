@@ -1,5 +1,4 @@
 import { RotatingLines } from "react-loader-spinner";
-
 import css from "./Refresher.module.css";
 
 const Refresher = () => {
