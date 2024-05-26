@@ -85,3 +85,15 @@ export const editTaskAdminThunk = createAsyncThunk(
     }
   },
 );
+
+export const createTaskAdminThunk = createAsyncThunk(
+  "tasks/createAdmin",
+  async (body, thunkApi) => {
+    try {
+      const { data } = await goitApi.post("tasks", body);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);

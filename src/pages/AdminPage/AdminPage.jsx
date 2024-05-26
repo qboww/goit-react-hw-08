@@ -12,6 +12,7 @@ import {
   selectTasks,
 } from "../../redux/tasksSlice";
 import AdminTable from "../../components/AdminTable/AdminTable";
+import TaskForm from "../../components/TaskForm/TaskForm";
 import css from "./AdminPage.module.css";
 
 const AdminPage = () => {
@@ -65,10 +66,11 @@ const AdminPage = () => {
         <div className={css.subCard}>
           <div className={css.wrapperText}>
             <h1>Admin Page</h1>
-            <p>Here you are able to edit and delete tasks</p>
+            <p>Here you are able to create, edit, and delete tasks</p>
           </div>
         </div>
         <div className={css.subCard}>
+          <TaskForm />
           <AdminTable
             tasks={tasks}
             onSave={handleSave}

@@ -1,6 +1,15 @@
 import { useState } from "react";
 import css from "./AdminTable.module.css";
 
+// Function to format date to "yyyy-MM-dd"
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 const AdminTable = ({ tasks, onSave, onDelete }) => {
   const [editingTaskId, setEditingTaskId] = useState(null);
   const [editTask, setEditTask] = useState({
@@ -18,7 +27,7 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
       courseName: task.courseName,
       taskName: task.taskName,
       taskDescription: task.taskDescription,
-      deadlineDate: task.deadlineDate,
+      deadlineDate: formatDate(task.deadlineDate), // Format date here
       mark: task.mark,
       state: task.state,
     });

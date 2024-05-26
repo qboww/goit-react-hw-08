@@ -1,7 +1,6 @@
 // TasksPage.js
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import TaskForm from "../../components/TaskForm/TaskForm";
 import TaskList from "../../components/TaskList/TaskList";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import { fetchTasksThunk } from "../../redux/tasksOperations";
@@ -47,7 +46,6 @@ const TasksPage = () => {
     <div className="container">
       <div className="card">
         <h1>Task Tracker</h1>
-        <TaskForm />
         <SearchBox />
         <TaskList />
       </div>
