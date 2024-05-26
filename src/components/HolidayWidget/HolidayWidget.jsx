@@ -23,15 +23,25 @@ const HolidayWidget = () => {
   }
 
   if (!holiday) {
-    toast("No holiday today");
-    return <Toaster />;
+    return (
+      <div className="sub-card">
+        <h2 className="component-title">Holiday of the day!</h2>
+        <div className={css.holidayContainer}>
+          <h2 className={css.holidayName}></h2>
+          <p className={css.holidayDescription}>
+            Today we have nothing to celebrate
+          </p>
+        </div>
+        <Toaster />
+      </div>
+    );
   }
 
   return (
     <div className="sub-card">
       <h2 className="component-title">Holiday of the day!</h2>
       <div className={css.holidayContainer}>
-        <h2 className={css.holidayName}></h2>
+        <h2 className={css.holidayName}>{holiday.name}</h2>
         <p className={css.holidayDescription}>{holiday.description}</p>
         <Toaster />
       </div>
