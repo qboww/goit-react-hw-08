@@ -94,7 +94,7 @@ const RegistrationForm = () => {
                 </NavLink>
               </div>
               <div className={css.btnContainer}>
-                <button className={css.btn} type="submit">
+                <button aria-label="Register" className={css.btn} type="submit">
                   Register
                 </button>
               </div>

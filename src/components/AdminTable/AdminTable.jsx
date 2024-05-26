@@ -94,11 +94,23 @@ const AdminTable = ({ tasks, onSave, onDelete }) => {
               <td className={`${css.customCell} ${css.customActions}`}>
                 <div className={css.customButtons}>
                   {editingTaskId === task._id ? (
-                    <button onClick={() => handleSave(task._id)}>Save</button>
+                    <button
+                      aria-label="Save"
+                      onClick={() => handleSave(task._id)}
+                    >
+                      Save
+                    </button>
                   ) : (
-                    <button onClick={() => handleEdit(task)}>Edit</button>
+                    <button aria-label="Edit" onClick={() => handleEdit(task)}>
+                      Edit
+                    </button>
                   )}
-                  <button onClick={() => onDelete(task._id)}>Delete</button>
+                  <button
+                    aria-label="Delete"
+                    onClick={() => onDelete(task._id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </td>
             </tr>

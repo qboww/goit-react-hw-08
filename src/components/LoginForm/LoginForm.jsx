@@ -83,7 +83,7 @@ const LoginForm = () => {
                   </Link>
                 </label>
                 <div className={css.btnContainer}>
-                  <button type="submit" className={css.btn}>
+                  <button aria-label="Login" type="submit" className={css.btn}>
                     Login
                   </button>
                 </div>

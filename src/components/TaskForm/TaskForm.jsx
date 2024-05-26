@@ -173,7 +173,7 @@ const TaskForm = () => {
                 </div>
               </div>
             </div>
-            <button className={css.btn} type="submit">
+            <button aria-label="Add Task" className={css.btn} type="submit">
               Add task
             </button>
           </Form>
