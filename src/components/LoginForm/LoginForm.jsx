@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useId } from "react";
 import * as Yup from "yup";
+import { Toaster, toast } from "react-hot-toast";
 import css from "./LoginForm.module.css";
 
 import { loginThunk } from "../../redux/authOperations";
@@ -28,8 +29,13 @@ const LoginForm = () => {
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
-  const handleSubmit = (values, actions) => {
-    dispatch(loginThunk(values));
+  const handleSubmit = async (values, actions) => {
+    try {
+      await dispatch(loginThunk(values)).unwrap();
+      toast.success("Login successful!");
+    } catch (error) {
+      toast.error("Login failed. Please check your email and password.");
+    }
     actions.resetForm();
   };
 
@@ -66,7 +72,7 @@ const LoginForm = () => {
                 <div className="input-error">
                   <Field
                     className={css.input}
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter your password..."
                     id={passwordFieldId}
@@ -79,7 +85,7 @@ const LoginForm = () => {
                 </div>
                 <label className={css.labelContainer}>
                   <Link to="/register" className={css.loginLabel}>
-                    Do not have account?
+                    Do not have an account?
                   </Link>
                 </label>
                 <div className={css.btnContainer}>
@@ -92,7 +98,9 @@ const LoginForm = () => {
           </div>
         </Form>
       </Formik>
+      <Toaster />
     </div>
   );
 };
+
 export default LoginForm;
