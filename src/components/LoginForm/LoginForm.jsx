@@ -1,11 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useId } from "react";
 import * as Yup from "yup";
+import { toast } from "react-hot-toast";
 import css from "./LoginForm.module.css";
 
 import { loginThunk } from "../../redux/authOperations";
+import { selectAuthError } from "../../redux/authSlice";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -24,12 +26,18 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const authError = useSelector(selectAuthError);
 
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
-  const handleSubmit = (values, actions) => {
-    dispatch(loginThunk(values));
+  const handleSubmit = async (values, actions) => {
+    const resultAction = await dispatch(loginThunk(values));
+    if (loginThunk.fulfilled.match(resultAction)) {
+      toast.success("Login successful!");
+    } else {
+      toast.error(authError || "Login failed. Please try again.");
+    }
     actions.resetForm();
   };
 
@@ -64,7 +72,7 @@ const LoginForm = () => {
                 <label htmlFor={passwordFieldId}>Password</label>
                 <div className="input-error">
                   <Field
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter your password..."
                     id={passwordFieldId}
@@ -77,7 +85,7 @@ const LoginForm = () => {
                 </div>
                 <label className={css.labelContainer}>
                   <Link to="/register" className={css.loginLabel}>
-                    Do not have account?
+                    Do not have an account?
                   </Link>
                 </label>
                 <div className={css.btnContainer}>
@@ -93,4 +101,5 @@ const LoginForm = () => {
     </div>
   );
 };
+
 export default LoginForm;

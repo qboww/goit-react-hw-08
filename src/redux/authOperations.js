@@ -23,6 +23,11 @@ export const loginThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        return thunkApi.rejectWithValue(
+          "Login failed. Please check your email and password",
+        );
+      }
       return thunkApi.rejectWithValue(error.message);
     }
   },
