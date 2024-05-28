@@ -41,6 +41,15 @@ select {
   outline: none;
 }
 
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
 
 @media screen and (min-width: 768px) {
   .sidesContainer {

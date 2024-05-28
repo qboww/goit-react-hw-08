@@ -1,5 +1,3 @@
-// components/TaskForm/TaskForm.js
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Field, Form, Formik, ErrorMessage } from "formik";
@@ -8,6 +6,7 @@ import Select from "react-select";
 import { addTaskThunk } from "../../redux/tasksOperations";
 import { fetchUsersThunk } from "../../redux/userOperations";
 import { selectUsers } from "../../redux/userSlice";
+import { toast } from "react-hot-toast";
 import css from "./TaskForm.module.css";
 
 const TaskForm = () => {
@@ -35,7 +34,7 @@ const TaskForm = () => {
     deadlineDate: "",
     mark: "",
     state: "pending",
-    userId: "", 
+    userId: "",
   };
 
   const validationSchema = yup.object().shape({
@@ -64,36 +63,17 @@ const TaskForm = () => {
       .min(0, "Mark cannot be less than 0")
       .max(100, "Mark cannot exceed 100"),
     state: yup.string().required("State is required"),
-    userId: yup.string().required("User is required"), 
+    userId: yup.string().required("User is required"),
   });
 
-  const handleSubmit = (values, actions) => {
-    dispatch(addTaskThunk(values));
-    actions.resetForm();
-  };
-
-  const selectStyles = {
-    control: (provided) => ({
-      ...provided,
-      border: "1px solid #ccc",
-      borderRadius: "4px",
-      padding: "6px 12px",
-      fontSize: "16px",
-    }),
-    valueContainer: (provided) => ({
-      ...provided,
-      padding: "0",
-    }),
-    input: (provided) => ({
-      ...provided,
-      margin: "0",
-      padding: "0",
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      margin: "0",
-      padding: "0",
-    }),
+  const handleSubmit = async (values, actions) => {
+    try {
+      await dispatch(addTaskThunk(values)).unwrap();
+      toast.success("Task added successfully!");
+      actions.resetForm();
+    } catch (error) {
+      toast.error("Failed to add task.");
+    }
   };
 
   return (
@@ -217,7 +197,6 @@ const TaskForm = () => {
                         onChange={(option) =>
                           setFieldValue("userId", option.value)
                         }
-                        styles={selectStyles}
                       />
                       <ErrorMessage
                         className="error"

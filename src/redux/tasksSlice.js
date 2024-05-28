@@ -1,12 +1,13 @@
 // tasksSlice.js
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
-  addTaskThunk,
-  deleteTaskThunk,
-  editTaskThunk,
   fetchTasksThunk,
   fetchTasksWithPaginationThunk,
   searchTasksThunk,
+  fetchAllTasksThunk,
+  addTaskThunk,
+  deleteTaskThunk,
+  editTaskAdminThunk,
 } from "./tasksOperations";
 import toast from "react-hot-toast";
 import { createSelector } from "@reduxjs/toolkit";
@@ -56,6 +57,10 @@ const tasksSlice = createSlice({
           state.isLoading = false;
         },
       )
+      .addCase(fetchAllTasksThunk.fulfilled, (state, { payload }) => {
+        state.items = payload;
+        state.isLoading = false;
+      })
       .addCase(searchTasksThunk.fulfilled, (state, { payload }) => {
         state.matchedTask = payload.length > 0 ? payload[0] : null;
         state.isLoading = false;
@@ -65,6 +70,7 @@ const tasksSlice = createSlice({
           fetchTasksThunk.pending,
           fetchTasksWithPaginationThunk.pending,
           searchTasksThunk.pending,
+          fetchAllTasksThunk.pending,
         ),
         (state) => {
           state.isLoading = true;
@@ -76,6 +82,7 @@ const tasksSlice = createSlice({
           fetchTasksThunk.rejected,
           fetchTasksWithPaginationThunk.rejected,
           searchTasksThunk.rejected,
+          fetchAllTasksThunk.rejected,
         ),
         (state, { payload }) => {
           state.isError = payload;
@@ -93,6 +100,9 @@ export const selectTasks = (state) => state.tasks.items;
 export const selectIsLoading = (state) => state.tasks.isLoading;
 export const selectIsError = (state) => state.tasks.isError;
 export const selectMatchedTask = (state) => state.tasks.matchedTask;
+
+// Selector to get all tasks
+export const selectAllTasks = (state) => state.tasks.items;
 
 export const selectFilteredTasks = createSelector(
   [selectTasks, selectNameFilter, selectNumberFilter],

@@ -102,7 +102,8 @@ export const editTaskAdminThunk = createAsyncThunk(
   "tasks/editAdmin",
   async (body, thunkApi) => {
     try {
-      const { data } = await goitApi.patch(`tasks/${body.id}`, body);
+      const { id, ...taskData } = body;
+      const { data } = await goitApi.patch(`tasks/${id}`, taskData);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

@@ -1,23 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchAllTasksThunk,
-  deleteTaskAdminThunk,
-  editTaskAdminThunk,
-} from "../../redux/tasksOperations";
-import {
-  addTask,
-  updateTask,
-  deleteTask,
-  selectFilteredTasks,
-} from "../../redux/tasksSlice";
-import AdminTable from "../../components/AdminTable/AdminTable";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAllTasksThunk } from "../../redux/tasksOperations";
+import { addTask, updateTask, deleteTask } from "../../redux/tasksSlice";
+import AdminForm from "../../components/AdminForm/AdminForm";
+import AdminSearch from "../../components/AdminSearch/AdminSearch";
 import TaskForm from "../../components/TaskForm/TaskForm";
-import SearchBox from "../../components/SearchBox/SearchBox";
+import { Toaster } from "react-hot-toast";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector(selectFilteredTasks);
+  const [selectedTask, setSelectedTask] = useState(null);
 
   useEffect(() => {
     dispatch(fetchAllTasksThunk());
@@ -52,12 +44,12 @@ const AdminPage = () => {
     };
   }, [dispatch]);
 
-  const handleSave = (id, updatedTask) => {
-    dispatch(editTaskAdminThunk({ id, ...updatedTask }));
+  const handleSelectTask = (task) => {
+    setSelectedTask(task);
   };
 
-  const handleDelete = (id) => {
-    dispatch(deleteTaskAdminThunk(id));
+  const handleTaskDeleted = () => {
+    setSelectedTask(null);
   };
 
   return (
@@ -71,14 +63,11 @@ const AdminPage = () => {
         </div>
         <div className="card">
           <TaskForm />
-          <SearchBox />
-          <AdminTable
-            tasks={tasks}
-            onSave={handleSave}
-            onDelete={handleDelete}
-          />
+          <AdminSearch onSelectTask={handleSelectTask} />
+          <AdminForm selectedTask={selectedTask} onDelete={handleTaskDeleted} />
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };
