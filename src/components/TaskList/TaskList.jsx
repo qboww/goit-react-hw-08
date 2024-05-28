@@ -37,11 +37,13 @@ const TaskList = () => {
         )}
       </ul>
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {filteredItems.length >= 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 };

@@ -37,7 +37,7 @@ const SearchBox = () => {
             <Task item={matchedTask} />
           </div>
         ) : (
-          <p>No matching task found</p>
+          <p style={{ paddingTop: 16 }}>No matching task found</p>
         ))}
     </div>
   );
