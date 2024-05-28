@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+// TasksPage.js
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import TaskList from "../../components/TaskList/TaskList";
 import SearchBox from "../../components/SearchBox/SearchBox";
@@ -52,6 +53,8 @@ const TasksPage = () => {
         </div>
         <div className="card">
           <SearchBox />
+        </div>
+        <div className="card">
           <TaskList />
         </div>
       </div>

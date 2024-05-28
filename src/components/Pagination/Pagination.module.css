@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 16px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.paginationButton {
+  max-width: 90px;
+  width: 100%;
+  text-align: center;
+}
+
+.paginationButton:disabled {
+  cursor: default;
+}
+
+.paginationButton:disabled {
+  background-color: rgb(82, 82, 82);
+}

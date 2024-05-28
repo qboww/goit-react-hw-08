@@ -1,24 +1,44 @@
-import { useDispatch } from "react-redux";
-import { useId } from "react";
-import { changeFilter } from "../../redux/filtersSlice";
+// SearchBox.js
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { searchTasksThunk } from "../../redux/tasksOperations";
+import { selectMatchedTask } from "../../redux/tasksSlice";
+import { Task } from "../Task/Task";
+import css from "./SearchBox.module.css";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
-  const filterFieldId = useId();
+  const [searchQuery, setSearchQuery] = useState("");
+  const matchedTask = useSelector(selectMatchedTask);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+
+    if (value.trim() !== "") {
+      dispatch(searchTasksThunk(value));
+    }
+  };
 
   return (
     <div className="sub-card">
       <h2 className="component-title">Search for tasks</h2>
-      <label htmlFor={filterFieldId}>Find tasks by name or description</label>
+      <label>Find tasks by name</label>
       <input
         type="text"
         name="filter"
-        id={filterFieldId}
         placeholder="Enter search prompt..."
-        onChange={(e) => {
-          dispatch(changeFilter(e.target.value));
-        }}
+        value={searchQuery}
+        onChange={handleSearchChange}
       />
+      {searchQuery.trim() &&
+        (matchedTask ? (
+          <div className={css.matchedTask}>
+            <Task item={matchedTask} />
+          </div>
+        ) : (
+          <p>No matching task found</p>
+        ))}
     </div>
   );
 };

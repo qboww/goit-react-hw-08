@@ -2,6 +2,30 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import goitApi from "../config/goitApi";
 
+export const fetchTasksWithPaginationThunk = createAsyncThunk(
+  "tasks/fetchWithPagination",
+  async (page, thunkApi) => {
+    try {
+      const { data } = await goitApi.get(`tasks/paginated?page=${page}`);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const searchTasksThunk = createAsyncThunk(
+  "tasks/search",
+  async (query, thunkApi) => {
+    try {
+      const { data } = await goitApi.get(`tasks/search?query=${query}`);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
 export const fetchTasksThunk = createAsyncThunk(
   "tasks/fetchAll",
   async (_, thunkApi) => {

@@ -1,10 +1,26 @@
-import { useSelector } from "react-redux";
+// TaskList.js
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import css from "./TaskList.module.css";
 import { Task } from "../Task/Task";
 import { selectFilteredTasks } from "../../redux/tasksSlice";
+import Pagination from "../Pagination/Pagination";
+import { fetchTasksWithPaginationThunk } from "../../redux/tasksOperations";
 
 const TaskList = () => {
+  const dispatch = useDispatch();
   const filteredItems = useSelector(selectFilteredTasks);
+  const totalPages = useSelector((state) => state.tasks.totalPages);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(fetchTasksWithPaginationThunk(currentPage));
+  }, [dispatch, currentPage]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="sub-card">
@@ -20,6 +36,12 @@ const TaskList = () => {
           <p>No tasks found</p>
         )}
       </ul>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };
