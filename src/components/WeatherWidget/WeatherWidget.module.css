@@ -1,0 +1,23 @@
+.weatherWidget {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.weatherIcon {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(128, 128, 128, 0.356);
+  border-radius: 8px;
+}
+
+.advice {
+  padding-top: 16px;
+  font-size: 18px;
+  font-weight: 400;
+}

@@ -1,4 +1,6 @@
-import HolidayWidget from "../../components/HolidayWidget/HolidayWidget";
+// HomePage.js
+import React from "react";
+import WeatherWidget from "../../components/WeatherWidget/WeatherWidget";
 
 const HomePage = () => {
   return (
@@ -11,7 +13,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="card">
-          <HolidayWidget />
+          <WeatherWidget />
         </div>
       </div>
     </div>
