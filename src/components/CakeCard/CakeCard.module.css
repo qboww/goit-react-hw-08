@@ -1,0 +1,21 @@
+.cakeCard {
+  max-width: 280px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cakeCard img {
+  width: 50%;
+}
+
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

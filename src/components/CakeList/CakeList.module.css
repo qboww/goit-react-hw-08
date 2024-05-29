@@ -1,0 +1,12 @@
+.cakeList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.paginationContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

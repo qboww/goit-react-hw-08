@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import HomePage from "./pages/HomePage/HomePage";
-import TasksPage from "./pages/TasksPage/TasksPage";
+import HomePage from "./pages/CakePage/CakePage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ResourcesPage from "./pages/ResourcesPage/ResourcesPage"; 
@@ -47,14 +46,6 @@ export default function App() {
             <PublicRoute>
               <LoginPage />
             </PublicRoute>
-          }
-        />
-        <Route
-          path="tasks"
-          element={
-            <PrivateRoute>
-              <TasksPage />
-            </PrivateRoute>
           }
         />
         <Route

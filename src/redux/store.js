@@ -1,8 +1,9 @@
+// store.js
 import { configureStore } from "@reduxjs/toolkit";
-import { tasksReducer } from "./tasksSlice";
+import { cakesReducer } from "./cakesSlice";
 import { authReducer } from "./authSlice";
 import { filtersReducer } from "./filtersSlice";
-import { userReducer } from "./userSlice"; // Add this line
+import { userReducer } from "./userSlice";
 import {
   persistStore,
   persistReducer,
@@ -24,10 +25,10 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    tasks: tasksReducer,
+    cakes: cakesReducer,
     filters: filtersReducer,
     auth: persistReducer(persistConfig, authReducer),
-    users: userReducer, // Add this line
+    users: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
