@@ -4,10 +4,12 @@ import {
   addCakeThunk,
   updateCakeThunk,
   deleteCakeThunk,
+  fetchIngredientsThunk,
 } from "./cakesOperations";
 
 const initialState = {
   cakes: [],
+  ingredients: [],
   isLoading: false,
   isError: false,
   totalPages: 1,
@@ -58,6 +60,21 @@ const cakesSlice = createSlice({
       })
       .addCase(deleteCakeThunk.fulfilled, (state, { payload }) => {
         state.cakes = state.cakes.filter((cake) => cake._id !== payload);
+      })
+      .addCase(fetchIngredientsThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchIngredientsThunk.fulfilled, (state, { payload }) => {
+        state.ingredients = payload.map((ingredient) => ({
+          value: ingredient,
+          label: ingredient,
+        }));
+        state.isLoading = false;
+      })
+      .addCase(fetchIngredientsThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
       });
   },
 });
@@ -69,3 +86,4 @@ export const selectCakes = (state) => state.cakes.cakes;
 export const selectIsLoadingCakes = (state) => state.cakes.isLoading;
 export const selectIsErrorCakes = (state) => state.cakes.isError;
 export const selectTotalPages = (state) => state.cakes.totalPages;
+export const selectIngredients = (state) => state.cakes.ingredients;

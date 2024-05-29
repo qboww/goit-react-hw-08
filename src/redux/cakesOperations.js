@@ -1,11 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import goitApi from "../config/goitApi";
+import axios from "axios";
 
 export const fetchCakesThunk = createAsyncThunk(
   "cakes/fetchAll",
-  async ({ page = 1 }, thunkApi) => {
+  async (
+    { page = 1, sortBy = "name", order = "asc", search = "", ingredients = [] },
+    thunkApi,
+  ) => {
     try {
-      const { data } = await goitApi.get(`/cakes?page=${page}`);
+      const queryString = new URLSearchParams({
+        page,
+        sortBy,
+        order,
+        search,
+        ingredients: ingredients.join(","),
+      }).toString();
+      const { data } = await goitApi.get(`/cakes?${queryString}`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -13,6 +24,17 @@ export const fetchCakesThunk = createAsyncThunk(
   },
 );
 
+export const fetchIngredientsThunk = createAsyncThunk(
+  "cakes/fetchIngredients",
+  async (_, thunkApi) => {
+    try {
+      const response = await axios.get("http://localhost:5000/ingredients");
+      return response.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
 
 export const addCakeThunk = createAsyncThunk(
   "cakes/add",
