@@ -2,6 +2,21 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import goitApi from "../config/goitApi";
 import axios from "axios";
 
+const fetchAllCakes = async () => {
+  let allCakes = [];
+  let currentPage = 1;
+  let totalPages = 1;
+
+  while (currentPage <= totalPages) {
+    const { data } = await goitApi.get(`/cakes?page=${currentPage}`);
+    allCakes = [...allCakes, ...data.cakes];
+    totalPages = data.totalPages;
+    currentPage += 1;
+  }
+
+  return allCakes;
+};
+
 export const fetchCakesThunk = createAsyncThunk(
   "cakes/fetchAll",
   async (
@@ -66,6 +81,18 @@ export const deleteCakeThunk = createAsyncThunk(
     try {
       await goitApi.delete(`/cakes/${id}`);
       return id;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const fetchAllCakesThunk = createAsyncThunk(
+  "cakes/fetchAllCakes",
+  async (_, thunkApi) => {
+    try {
+      const allCakes = await fetchAllCakes();
+      return allCakes;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

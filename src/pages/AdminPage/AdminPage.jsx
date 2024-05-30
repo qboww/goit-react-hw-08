@@ -1,73 +1,73 @@
-// import { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { fetchAllTasksThunk } from "../../redux/tasksOperations";
-// import { addTask, updateTask, deleteTask } from "../../redux/tasksSlice";
-// import AdminForm from "../../components/AdminForm/AdminForm";
-// import AdminSearch from "../../components/AdminSearch/AdminSearch";
-// import TaskForm from "../../components/TaskForm/TaskForm";
-// import { Toaster } from "react-hot-toast";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAllCakesThunk } from "../../redux/cakesOperations";
+import { addCake, updateCake, deleteCake } from "../../redux/cakesSlice";
+import AdminForm from "../../components/AdminForm/AdminForm";
+import AdminSearch from "../../components/AdminSearch/AdminSearch";
+import CakeForm from "../../components/CakeForm/CakeForm";
+import { Toaster } from "react-hot-toast";
 
 const AdminPage = () => {
-  // const dispatch = useDispatch();
-  // const [selectedTask, setSelectedTask] = useState(null);
+  const dispatch = useDispatch();
+  const [selectedCake, setSelectedCake] = useState(null);
 
-  // useEffect(() => {
-  //   dispatch(fetchAllTasksThunk());
+  useEffect(() => {
+    dispatch(fetchAllCakesThunk());
 
-  //   const eventSource = new EventSource("http://localhost:5000/events");
+    const eventSource = new EventSource("http://localhost:5000/events");
 
-  //   eventSource.onmessage = (event) => {
-  //     const parsedData = JSON.parse(event.data);
+    eventSource.onmessage = (event) => {
+      const parsedData = JSON.parse(event.data);
 
-  //     switch (parsedData.type) {
-  //       case "ADD_TASK":
-  //         dispatch(addTask(parsedData.payload));
-  //         break;
-  //       case "UPDATE_TASK":
-  //         dispatch(updateTask(parsedData.payload));
-  //         break;
-  //       case "DELETE_TASK":
-  //         dispatch(deleteTask(parsedData.payload));
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   };
+      switch (parsedData.type) {
+        case "ADD_CAKE":
+          dispatch(addCake(parsedData.payload));
+          break;
+        case "UPDATE_CAKE":
+          dispatch(updateCake(parsedData.payload));
+          break;
+        case "DELETE_CAKE":
+          dispatch(deleteCake(parsedData.payload));
+          break;
+        default:
+          break;
+      }
+    };
 
-  //   const pollInterval = setInterval(() => {
-  //     dispatch(fetchAllTasksThunk());
-  //   }, 5000);
+    const pollInterval = setInterval(() => {
+      dispatch(fetchAllCakesThunk());
+    }, 5000);
 
-  //   return () => {
-  //     eventSource.close();
-  //     clearInterval(pollInterval);
-  //   };
-  // }, [dispatch]);
+    return () => {
+      eventSource.close();
+      clearInterval(pollInterval);
+    };
+  }, [dispatch]);
 
-  // const handleSelectTask = (task) => {
-  //   setSelectedTask(task);
-  // };
+  const handleSelectCake = (cake) => {
+    setSelectedCake(cake);
+  };
 
-  // const handleTaskDeleted = () => {
-  //   setSelectedTask(null);
-  // };
+  const handleCakeDeleted = () => {
+    setSelectedCake(null);
+  };
 
   return (
     <div className="container">
-      {/* <div className="wrapper">
+      <div className="wrapper">
         <div className="card">
           <div className="card-desc">
             <h1>Admin Page</h1>
-            <p>Here you are able to create, edit, and delete tasks</p>
+            <p>Here you are able to create, edit, and delete cakes</p>
           </div>
         </div>
         <div className="card">
-          <TaskForm />
-          <AdminSearch onSelectTask={handleSelectTask} />
-          <AdminForm selectedTask={selectedTask} onDelete={handleTaskDeleted} />
+          <CakeForm />
+          <AdminSearch onSelectCake={handleSelectCake} />
+          <AdminForm selectedCake={selectedCake} onDelete={handleCakeDeleted} />
         </div>
       </div>
-      <Toaster /> */}
+      <Toaster />
     </div>
   );
 };

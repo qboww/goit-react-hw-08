@@ -1,46 +1,52 @@
-// AdminSearch.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllTasksThunk } from "../../redux/tasksOperations";
-import { selectAllTasks, selectIsLoading } from "../../redux/tasksSlice";
+import { fetchAllCakesThunk } from "../../redux/cakesOperations";
+import { selectAllCakes, selectIsLoadingCakes } from "../../redux/cakesSlice";
 import css from "./AdminSearch.module.css";
 
-const AdminSearch = ({ onSelectTask }) => {
+const AdminSearch = ({ onSelectCake }) => {
   const dispatch = useDispatch();
-  const tasks = useSelector(selectAllTasks);
-  const isLoading = useSelector(selectIsLoading);
+  const allCakes = useSelector(selectAllCakes);
+  const isLoading = useSelector(selectIsLoadingCakes);
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchAllTasksThunk());
+    dispatch(fetchAllCakesThunk());
   }, [dispatch]);
 
+  const cakes = useMemo(
+    () => (Array.isArray(allCakes) ? allCakes : []),
+    [allCakes],
+  );
+
   useEffect(() => {
-    setOptions(
-      tasks.map((task) => ({
-        value: task._id,
-        label: task.taskName,
-      })),
-    );
-  }, [tasks]);
+    if (cakes.length > 0) {
+      setOptions(
+        cakes.map((cake) => ({
+          value: cake._id,
+          label: cake.name,
+        })),
+      );
+    }
+  }, [cakes]);
 
   const handleSelectChange = (selectedOption) => {
-    const selectedTask = tasks.find(
-      (task) => task._id === selectedOption.value,
+    const selectedCake = cakes.find(
+      (cake) => cake._id === selectedOption.value,
     );
-    onSelectTask(selectedTask);
+    onSelectCake(selectedCake);
   };
 
   return (
     <div className="sub-card">
       <h2 className="component-title">Admin Search</h2>
-      <p>Provide task name</p>
+      <p>Provide cake name</p>
       <Select
         isLoading={isLoading}
         options={options}
         onChange={handleSelectChange}
-        placeholder="Search tasks..."
+        placeholder="Search cakes..."
       />
     </div>
   );

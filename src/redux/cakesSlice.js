@@ -5,6 +5,7 @@ import {
   updateCakeThunk,
   deleteCakeThunk,
   fetchIngredientsThunk,
+  fetchAllCakesThunk,
 } from "./cakesOperations";
 
 const initialState = {
@@ -49,18 +50,6 @@ const cakesSlice = createSlice({
         state.isError = payload;
         state.isLoading = false;
       })
-      .addCase(addCakeThunk.fulfilled, (state, { payload }) => {
-        state.cakes.push(payload);
-      })
-      .addCase(updateCakeThunk.fulfilled, (state, { payload }) => {
-        const index = state.cakes.findIndex((cake) => cake._id === payload._id);
-        if (index !== -1) {
-          state.cakes[index] = payload;
-        }
-      })
-      .addCase(deleteCakeThunk.fulfilled, (state, { payload }) => {
-        state.cakes = state.cakes.filter((cake) => cake._id !== payload);
-      })
       .addCase(fetchIngredientsThunk.pending, (state) => {
         state.isLoading = true;
         state.isError = false;
@@ -75,6 +64,18 @@ const cakesSlice = createSlice({
       .addCase(fetchIngredientsThunk.rejected, (state, { payload }) => {
         state.isError = payload;
         state.isLoading = false;
+      })
+      .addCase(fetchAllCakesThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchAllCakesThunk.fulfilled, (state, { payload }) => {
+        state.cakes = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchAllCakesThunk.rejected, (state, { payload }) => {
+        state.isError = payload;
+        state.isLoading = false;
       });
   },
 });
@@ -87,3 +88,4 @@ export const selectIsLoadingCakes = (state) => state.cakes.isLoading;
 export const selectIsErrorCakes = (state) => state.cakes.isError;
 export const selectTotalPages = (state) => state.cakes.totalPages;
 export const selectIngredients = (state) => state.cakes.ingredients;
+export const selectAllCakes = (state) => state.cakes.cakes;

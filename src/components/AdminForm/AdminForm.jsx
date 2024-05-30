@@ -2,72 +2,72 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
-import {
-  editTaskAdminThunk,
-  deleteTaskAdminThunk,
-} from "../../redux/tasksOperations";
+import { updateCakeThunk, deleteCakeThunk } from "../../redux/cakesOperations";
 import { toast } from "react-hot-toast";
-import css from "../../components/TaskForm/TaskForm.module.css";
+import css from "./AdminForm.module.css";
 
-const AdminForm = ({ selectedTask, onDelete }) => {
+const AdminForm = ({ selectedCake, onDelete }) => {
   const dispatch = useDispatch();
-  const [task, setTask] = useState(selectedTask || {});
+  const [cake, setCake] = useState(selectedCake || {});
 
   useEffect(() => {
-    setTask(selectedTask || {});
-  }, [selectedTask]);
+    setCake(selectedCake || {});
+  }, [selectedCake]);
 
   const initialValues = {
-    taskName: task.taskName || "",
-    taskDescription: task.taskDescription || "",
-    deadlineDate: task.deadlineDate
-      ? new Date(task.deadlineDate).toISOString().split("T")[0]
-      : "",
-    mark: task.mark || "",
-    state: task.state || "pending",
+    name: cake.name || "",
+    components: cake.components ? cake.components.join(", ") : "",
+    weight: cake.weight || "",
+    price: cake.price || "",
   };
 
   const validationSchema = yup.object().shape({
-    taskName: yup.string().required("Task name is required").trim(),
-    taskDescription: yup
-      .string()
-      .required("Task description is required")
-      .trim(),
-    deadlineDate: yup.date().required("Deadline date is required"),
-    mark: yup
+    name: yup.string().required("Name is required").trim(),
+    components: yup.string().required("Components are required").trim(),
+    weight: yup
       .number()
-      .required("Mark is required")
-      .min(0, "Mark cannot be less than 0")
-      .max(100, "Mark cannot exceed 100"),
-    state: yup.string().required("State is required"),
+      .required("Weight is required")
+      .positive("Weight must be positive"),
+    price: yup
+      .number()
+      .required("Price is required")
+      .positive("Price must be positive"),
   });
 
   const handleSubmit = async (values, actions) => {
     try {
-      await dispatch(editTaskAdminThunk({ id: task._id, ...values })).unwrap();
-      toast.success("Task updated successfully!");
+      const componentsArray = values.components
+        .split(",")
+        .map((component) => component.trim());
+      await dispatch(
+        updateCakeThunk({
+          id: cake._id,
+          cake: { ...values, components: componentsArray },
+        }),
+      ).unwrap();
+      toast.success("Cake updated successfully!");
     } catch (error) {
-      toast.error("Failed to update task.");
+      toast.error("Failed to update cake.");
     }
     actions.resetForm({ values });
   };
 
   const handleDelete = async () => {
     try {
-      await dispatch(deleteTaskAdminThunk(task._id)).unwrap();
-      toast.success("Task deleted successfully!");
+      await dispatch(deleteCakeThunk(cake._id)).unwrap();
+      toast.success("Cake deleted successfully!");
       if (onDelete) {
         onDelete();
       }
     } catch (error) {
-      toast.error("Failed to delete task.");
+      toast.error("Failed to delete cake.");
     }
   };
 
   return (
     <div className="sub-card">
-      <h2 className="component-title">Edit or Delete a task</h2>
-      {task && task._id ? (
+      <h2 className="component-title">Edit or Delete a Cake</h2>
+      {cake && cake._id ? (
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -75,86 +75,60 @@ const AdminForm = ({ selectedTask, onDelete }) => {
           enableReinitialize
         >
           <Form>
-            <div className={css.sidesContainer}>
-              <div className={css.containerLeft}>
-                <div>
-                  <label htmlFor="taskName">Task Name</label>
-                  <div className="input-error">
-                    <Field
-                      type="text"
-                      id="taskName"
-                      name="taskName"
-                      placeholder="Enter task name..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="taskName"
-                      component="span"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="mark">Mark</label>
-                  <div className="input-error">
-                    <Field
-                      type="number"
-                      id="mark"
-                      name="mark"
-                      placeholder="Enter mark..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="mark"
-                      component="span"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="deadlineDate">Deadline Date</label>
-                  <div className="input-error">
-                    <Field type="date" id="deadlineDate" name="deadlineDate" />
-                    <ErrorMessage
-                      className="error"
-                      name="deadlineDate"
-                      component="span"
-                    />
-                  </div>
-                </div>
+            <div>
+              <label htmlFor="name">Name</label>
+              <div className="input-error">
+                <Field
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter cake name..."
+                />
+                <ErrorMessage className="error" name="name" component="span" />
               </div>
-              <div className={css.containerRight}>
-                <div className={css.taskDescription}>
-                  <label htmlFor="taskDescription">Task Description</label>
-                  <div className="input-error">
-                    <Field
-                      rows="4"
-                      cols="28"
-                      as="textarea"
-                      id="taskDescription"
-                      name="taskDescription"
-                      placeholder="Enter task description..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="taskDescription"
-                      component="span"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="state">State</label>
-                  <div className="input-error">
-                    <Field as="select" id="state" name="state">
-                      <option value="pending">Pending</option>
-                      <option value="in progress">In Progress</option>
-                      <option value="completed">Completed</option>
-                    </Field>
-                    <ErrorMessage
-                      className="error"
-                      name="state"
-                      component="span"
-                    />
-                  </div>
-                </div>
+            </div>
+            <div>
+              <label htmlFor="weight">Weight</label>
+              <div className="input-error">
+                <Field
+                  type="number"
+                  id="weight"
+                  name="weight"
+                  placeholder="Enter weight..."
+                />
+                <ErrorMessage
+                  className="error"
+                  name="weight"
+                  component="span"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="price">Price</label>
+              <div className="input-error">
+                <Field
+                  type="number"
+                  id="price"
+                  name="price"
+                  placeholder="Enter price..."
+                />
+                <ErrorMessage className="error" name="price" component="span" />
+              </div>
+            </div>
+            <div className={css.taskDescription}>
+              <label htmlFor="components">Components</label>
+              <div className="input-error">
+                <Field
+                  as="textarea"
+                  id="components"
+                  name="components"
+                  placeholder="Enter components (comma separated)..."
+                />
+                <ErrorMessage
+                  className="error"
+                  name="components"
+                  component="span"
+                />
               </div>
             </div>
             <div className={css.buttons}>
@@ -172,7 +146,7 @@ const AdminForm = ({ selectedTask, onDelete }) => {
           </Form>
         </Formik>
       ) : (
-        <p>Select a task to edit</p>
+        <p>Select a cake to edit</p>
       )}
     </div>
   );
