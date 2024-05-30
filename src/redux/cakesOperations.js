@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import goitApi from "../config/goitApi";
+import backendApi from "../config/backendApi";
 import axios from "axios";
 
 const fetchAllCakes = async () => {
@@ -8,7 +8,7 @@ const fetchAllCakes = async () => {
   let totalPages = 1;
 
   while (currentPage <= totalPages) {
-    const { data } = await goitApi.get(`/cakes?page=${currentPage}`);
+    const { data } = await backendApi.get(`/cakes?page=${currentPage}`);
     allCakes = [...allCakes, ...data.cakes];
     totalPages = data.totalPages;
     currentPage += 1;
@@ -31,7 +31,7 @@ export const fetchCakesThunk = createAsyncThunk(
         search,
         ingredients: ingredients.join(","),
       }).toString();
-      const { data } = await goitApi.get(`/cakes?${queryString}`);
+      const { data } = await backendApi.get(`/cakes?${queryString}`);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -55,7 +55,7 @@ export const addCakeThunk = createAsyncThunk(
   "cakes/add",
   async (cake, thunkApi) => {
     try {
-      const { data } = await goitApi.post("/cakes", cake);
+      const { data } = await backendApi.post("/cakes", cake);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -67,7 +67,7 @@ export const updateCakeThunk = createAsyncThunk(
   "cakes/update",
   async ({ id, cake }, thunkApi) => {
     try {
-      const { data } = await goitApi.patch(`/cakes/${id}`, cake);
+      const { data } = await backendApi.patch(`/cakes/${id}`, cake);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -79,7 +79,7 @@ export const deleteCakeThunk = createAsyncThunk(
   "cakes/delete",
   async (id, thunkApi) => {
     try {
-      await goitApi.delete(`/cakes/${id}`);
+      await backendApi.delete(`/cakes/${id}`);
       return id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

@@ -23,7 +23,7 @@ const CakeList = ({ onOrder }) => {
           ? cakes.map((cake) => (
               <CakeCard cake={cake} onOrder={onOrder} key={cake._id} />
             ))
-          : !isLoading && <p>No cakes found</p>}
+          : !isLoading && <p style={{color: "white"}}>No cakes found</p>}
       </ul>
     </div>
   );

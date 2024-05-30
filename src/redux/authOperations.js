@@ -1,12 +1,12 @@
 // authOperations.js
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import goitApi, { clearToken, setToken } from "../config/goitApi";
+import backendApi, { clearToken, setToken } from "../config/backendApi";
 
 export const registerThunk = createAsyncThunk(
   "auth/register",
   async (credentials, thunkApi) => {
     try {
-      const { data } = await goitApi.post("/users/signup", credentials);
+      const { data } = await backendApi.post("/users/signup", credentials);
       setToken(data.token);
       return data;
     } catch (error) {
@@ -19,7 +19,7 @@ export const loginThunk = createAsyncThunk(
   "auth/login",
   async (credentials, thunkApi) => {
     try {
-      const { data } = await goitApi.post("/users/login", credentials);
+      const { data } = await backendApi.post("/users/login", credentials);
       setToken(data.token);
       return data;
     } catch (error) {
@@ -32,7 +32,7 @@ export const logoutThunk = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
     try {
-      await goitApi.post("/users/logout");
+      await backendApi.post("/users/logout");
       clearToken();
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -49,7 +49,7 @@ export const refreshThunk = createAsyncThunk(
     }
     setToken(token);
     try {
-      const { data } = await goitApi.get("/users/current");
+      const { data } = await backendApi.get("/users/current");
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
