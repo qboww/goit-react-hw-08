@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import goitApi from "../config/goitApi";
+import backendApi from "../config/backendApi";
 
 export const fetchUsersThunk = createAsyncThunk(
   "users/fetchAll",
   async (_, thunkApi) => {
     try {
-      const { data } = await goitApi.get("users");
+      const { data } = await backendApi.get("users");
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
