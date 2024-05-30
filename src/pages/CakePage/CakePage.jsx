@@ -16,6 +16,7 @@ import {
   selectIsLoadingCakes,
 } from "../../redux/cakesSlice";
 import css from "./CakePage.module.css";
+import WeatherWidget from "../../components/WeatherWidget/WeatherWidget";
 
 const CakesPage = () => {
   const dispatch = useDispatch();
@@ -88,58 +89,61 @@ const CakesPage = () => {
   };
 
   return (
-    <div className="container" ref={wrapperRef}>
-      <div className="card">
-        <Toaster />
-        <div className="wrapper">
-          <div className={css.controlsContainer}>
-            <input
-              type="text"
-              placeholder="Search by name"
-              value={search}
-              onChange={handleSearchChange}
-            />
-            <select value={sortBy} onChange={handleSortChange}>
-              <option value="name">Name</option>
-              <option value="price">Price</option>
-              <option value="weight">Weight</option>
-            </select>
-            <select value={order} onChange={handleOrderChange}>
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
-            </select>
-            <Select
-              isMulti
-              value={selectedIngredients}
-              onChange={handleIngredientChange}
-              options={ingredientOptions}
-              placeholder="Select ingredients"
-            />
+    <div>
+      <div className="container" ref={wrapperRef}>
+        <div className="card">
+          <Toaster />
+          <div className="wrapper">
+            <div className={css.controlsContainer}>
+              <input
+                type="text"
+                placeholder="Search by name"
+                value={search}
+                onChange={handleSearchChange}
+              />
+              <select value={sortBy} onChange={handleSortChange}>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+                <option value="weight">Weight</option>
+              </select>
+              <select value={order} onChange={handleOrderChange}>
+                <option value="asc">Ascending</option>
+                <option value="desc">Descending</option>
+              </select>
+              <Select
+                isMulti
+                value={selectedIngredients}
+                onChange={handleIngredientChange}
+                options={ingredientOptions}
+                placeholder="Select ingredients"
+              />
+            </div>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <>
+                <CakeList onOrder={handleOrder} />
+                <div className={css.paginationContainer}>
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              </>
+            )}
           </div>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <CakeList onOrder={handleOrder} />
-              <div className={css.paginationContainer}>
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            </>
+          {selectedCake && (
+            <OrderModal
+              isOpen={isModalOpen}
+              onClose={handleModalClose}
+              cake={selectedCake}
+              onSubmit={handleOrderSubmit}
+            />
           )}
         </div>
-        {selectedCake && (
-          <OrderModal
-            isOpen={isModalOpen}
-            onClose={handleModalClose}
-            cake={selectedCake}
-            onSubmit={handleOrderSubmit}
-          />
-        )}
       </div>
+      <WeatherWidget />
     </div>
   );
 };

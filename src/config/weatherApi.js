@@ -1,6 +1,6 @@
 // weatherApi.js
 export const getWeatherByCoordinates = async (lat, lon) => {
-  const apiKey = "19ae2ec3318de024d30f805965297958";
+  const apiKey = "cb410b0d2be7e76b8eace7afa70ebed2";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
 
   try {
