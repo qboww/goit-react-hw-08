@@ -1,15 +1,15 @@
 import axios from "axios";
 
-const goitApi = axios.create({
+const backendApi = axios.create({
   baseURL: "http://localhost:5000/",
 });
 
-export default goitApi;
+export default backendApi;
 
 export const setToken = (token) => {
-  goitApi.defaults.headers.common.Authorization = `Bearer ${token}`;
+  backendApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
 export const clearToken = () => {
-  goitApi.defaults.headers.common.Authorization = "";
+  backendApi.defaults.headers.common.Authorization = "";
 };

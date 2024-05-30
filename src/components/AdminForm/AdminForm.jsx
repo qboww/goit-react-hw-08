@@ -2,9 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
+import Select from "react-select";
 import { updateCakeThunk, deleteCakeThunk } from "../../redux/cakesOperations";
 import { toast } from "react-hot-toast";
 import css from "./AdminForm.module.css";
+
+const componentOptions = [
+  { value: "cream", label: "Cream" },
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberries", label: "Strawberries" },
+  { value: "blueberries", label: "Blueberries" },
+  { value: "nuts", label: "Nuts" },
+];
 
 const AdminForm = ({ selectedCake, onDelete }) => {
   const dispatch = useDispatch();
@@ -16,14 +25,19 @@ const AdminForm = ({ selectedCake, onDelete }) => {
 
   const initialValues = {
     name: cake.name || "",
-    components: cake.components ? cake.components.join(", ") : "",
+    components: cake.components
+      ? cake.components.map((component) => ({
+          value: component,
+          label: component,
+        }))
+      : [],
     weight: cake.weight || "",
     price: cake.price || "",
   };
 
   const validationSchema = yup.object().shape({
     name: yup.string().required("Name is required").trim(),
-    components: yup.string().required("Components are required").trim(),
+    components: yup.array().min(1, "Components are required"),
     weight: yup
       .number()
       .required("Weight is required")
@@ -36,9 +50,9 @@ const AdminForm = ({ selectedCake, onDelete }) => {
 
   const handleSubmit = async (values, actions) => {
     try {
-      const componentsArray = values.components
-        .split(",")
-        .map((component) => component.trim());
+      const componentsArray = values.components.map(
+        (component) => component.value,
+      );
       await dispatch(
         updateCakeThunk({
           id: cake._id,
@@ -74,77 +88,92 @@ const AdminForm = ({ selectedCake, onDelete }) => {
           onSubmit={handleSubmit}
           enableReinitialize
         >
-          <Form>
-            <div>
-              <label htmlFor="name">Name</label>
-              <div className="input-error">
-                <Field
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Enter cake name..."
-                />
-                <ErrorMessage className="error" name="name" component="span" />
+          {({ setFieldValue, values }) => (
+            <Form>
+              <div>
+                <label htmlFor="name">Name</label>
+                <div className="input-error">
+                  <Field
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter cake name..."
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="name"
+                    component="span"
+                  />
+                </div>
               </div>
-            </div>
-            <div>
-              <label htmlFor="weight">Weight</label>
-              <div className="input-error">
-                <Field
-                  type="number"
-                  id="weight"
-                  name="weight"
-                  placeholder="Enter weight..."
-                />
-                <ErrorMessage
-                  className="error"
-                  name="weight"
-                  component="span"
-                />
+              <div>
+                <label htmlFor="weight">Weight</label>
+                <div className="input-error">
+                  <Field
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    placeholder="Enter weight..."
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="weight"
+                    component="span"
+                  />
+                </div>
               </div>
-            </div>
-            <div>
-              <label htmlFor="price">Price</label>
-              <div className="input-error">
-                <Field
-                  type="number"
-                  id="price"
-                  name="price"
-                  placeholder="Enter price..."
-                />
-                <ErrorMessage className="error" name="price" component="span" />
+              <div>
+                <label htmlFor="price">Price</label>
+                <div className="input-error">
+                  <Field
+                    type="number"
+                    id="price"
+                    name="price"
+                    placeholder="Enter price..."
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="price"
+                    component="span"
+                  />
+                </div>
               </div>
-            </div>
-            <div className={css.taskDescription}>
-              <label htmlFor="components">Components</label>
-              <div className="input-error">
-                <Field
-                  as="input"
-                  id="components"
-                  name="components"
-                  placeholder="Enter components (comma separated)..."
-                />
-                <ErrorMessage
-                  className="error"
-                  name="components"
-                  component="span"
-                />
+              <div className={css.taskDescription}>
+                <label htmlFor="components">Components</label>
+                <div className="input-error">
+                  <Select
+                    id="components"
+                    name="components"
+                    options={componentOptions}
+                    isMulti
+                    value={values.components}
+                    onChange={(selectedOptions) =>
+                      setFieldValue("components", selectedOptions)
+                    }
+                    placeholder="Select components..."
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="components"
+                    component="span"
+                  />
+                </div>
               </div>
-            </div>
-            <div className={css.buttons}>
-              <button type="submit" className={css.btn} aria-label="save">
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={handleDelete}
-                className={`${css.btn} ${css.deleteButton}`}
-                aria-label="delete"
-              >
-                Delete
-              </button>
-            </div>
-          </Form>
+              <div className={css.buttons}>
+                <button type="submit" className={css.btn} aria-label="save">
+                  Save
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  className={`${css.btn} ${css.deleteButton}`}
+                  aria-label="delete"
+                >
+                  Delete
+                </button>
+              </div>
+            </Form>
+          )}
         </Formik>
       ) : (
         <p style={{ color: "black" }}>Select a cake to edit</p>

@@ -45,7 +45,12 @@ const CakeForm = () => {
 
   const handleSubmit = async (values, actions) => {
     try {
-      await dispatch(addCakeThunk(values)).unwrap();
+      const componentsArray = selectedIngredients.map(
+        (ingredient) => ingredient.value,
+      );
+      await dispatch(
+        addCakeThunk({ ...values, components: componentsArray }),
+      ).unwrap();
       toast.success("Cake created successfully!");
       actions.resetForm();
       setSelectedIngredients([]);
