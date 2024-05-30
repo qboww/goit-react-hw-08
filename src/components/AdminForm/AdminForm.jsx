@@ -119,7 +119,7 @@ const AdminForm = ({ selectedCake, onDelete }) => {
               <label htmlFor="components">Components</label>
               <div className="input-error">
                 <Field
-                  as="textarea"
+                  as="input"
                   id="components"
                   name="components"
                   placeholder="Enter components (comma separated)..."
@@ -146,7 +146,7 @@ const AdminForm = ({ selectedCake, onDelete }) => {
           </Form>
         </Formik>
       ) : (
-        <p>Select a cake to edit</p>
+        <p style={{ color: "black" }}>Select a cake to edit</p>
       )}
     </div>
   );

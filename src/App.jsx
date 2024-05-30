@@ -5,9 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/CakePage/CakePage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import ResourcesPage from "./pages/ResourcesPage/ResourcesPage"; 
+import FAQPage from "./pages/FAQPage/FAQPage"; 
 import PublicRoute from "./routes/PublicRoute";
-import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
 import NotFound from "./pages/NotFound/NotFound";
 import AdminPage from "./pages/AdminPage/AdminPage";
@@ -56,7 +55,7 @@ export default function App() {
             </AdminRoute>
           }
         />
-        <Route path="resources" element={<ResourcesPage />} />{" "}
+        <Route path="faq" element={<FAQPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -16,11 +16,11 @@ const Navigation = () => {
       </NavLink>
       {isLoggedIn && userRole === "admin" && (
         <NavLink to="/admin" className={css.link}>
-          Admin
+          Manage
         </NavLink>
       )}
-      <NavLink to="/resources" className={css.link}>
-        Resources
+      <NavLink to="/faq" className={css.link}>
+        FAQ
       </NavLink>
     </nav>
   );

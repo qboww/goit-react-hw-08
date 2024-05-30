@@ -3,23 +3,30 @@
 }
 
 .input {
-  max-width: 350px;
+  max-width: 300px;
   width: 100%;
 }
 
 .btn {
-  max-width: 150px;
-  width: 100%;
+  margin-top: 32px;
+  border: 1px solid grey;
 }
 
-.btnContainer {
-  display: flex;
-  justify-content: center;
-  padding-top: 16px;
-}
+.inputsContainer {
+  padding: 16px;
+  border-radius: 8px;
 
-.inputsContainer{
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.wrapper {
+  max-width: 500px;
+  width: 100%;
+}
+
+.parentWrapper {
+  display: flex;
+  justify-content: center;
 }

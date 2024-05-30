@@ -2,14 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  color: white;
+
+  display: flex;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
-.paginationButton:disabled {
-  cursor: default;
+.pageInfo {
+  padding: 10px;
+  border-radius: 8px;
+  height: 34px;
 }
 
-.paginationButton:disabled {
-  background-color: rgb(82, 82, 82);
+.paginationButton {
+  width: 90px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+

@@ -1,9 +1,10 @@
 .cakeCard {
-  max-width: 280px;
+  max-width: 298px;
   width: 100%;
-  border: 1px solid black;
   border-radius: 8px;
   padding: 8px;
+  background-color: rgba(255, 255, 255, 0.733);
+  color: white;
 
   display: flex;
   flex-direction: column;
@@ -11,11 +12,30 @@
 }
 
 .cakeCard img {
-  width: 50%;
+  width: 55%;
 }
 
 .cardDetails {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.data {
+  color: black;
+  background-color: rgba(255, 255, 255, 0.719);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.data p {
+  color: black;
+}
+
+.cakeName {
+  padding-bottom: 10px;
+}
+
+.price {
+  font-weight: 700;
 }

@@ -5,17 +5,23 @@ import toast, { Toaster } from "react-hot-toast";
 import CakeList from "../../components/CakeList/CakeList";
 import Pagination from "../../components/Pagination/Pagination";
 import OrderModal from "../../components/OrderModal/OrderModal";
+import Loader from "../../components/Loader/Loader";
 import {
   fetchCakesThunk,
   fetchIngredientsThunk,
 } from "../../redux/cakesOperations";
-import { selectTotalPages, selectIngredients } from "../../redux/cakesSlice";
+import {
+  selectTotalPages,
+  selectIngredients,
+  selectIsLoadingCakes,
+} from "../../redux/cakesSlice";
 import css from "./CakePage.module.css";
 
 const CakesPage = () => {
   const dispatch = useDispatch();
   const totalPages = useSelector(selectTotalPages);
   const ingredientOptions = useSelector(selectIngredients);
+  const isLoading = useSelector(selectIsLoadingCakes);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("name");
   const [order, setOrder] = useState("asc");
@@ -83,9 +89,9 @@ const CakesPage = () => {
 
   return (
     <div className="container" ref={wrapperRef}>
-      <Toaster />
-      <div className="wrapper">
-        <div className="card">
+      <div className="card">
+        <Toaster />
+        <div className="wrapper">
           <div className={css.controlsContainer}>
             <input
               type="text"
@@ -110,28 +116,30 @@ const CakesPage = () => {
               placeholder="Select ingredients"
             />
           </div>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <CakeList onOrder={handleOrder} />
+              <div className={css.paginationContainer}>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
+            </>
+          )}
         </div>
-        <div className="card">
-          <CakeList onOrder={handleOrder} />
-        </div>
-        <div className="card">
-          <div className={css.paginationContainer}>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </div>
-        </div>
+        {selectedCake && (
+          <OrderModal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+            cake={selectedCake}
+            onSubmit={handleOrderSubmit}
+          />
+        )}
       </div>
-      {selectedCake && (
-        <OrderModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          cake={selectedCake}
-          onSubmit={handleOrderSubmit}
-        />
-      )}
     </div>
   );
 };

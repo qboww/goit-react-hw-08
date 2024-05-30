@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@fontsource/inter-tight": "^5.0.20",
+    "@fontsource/source-sans-pro": "^5.0.8",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.2.4",
     "axios": "^1.6.8",

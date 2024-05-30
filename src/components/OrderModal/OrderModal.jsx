@@ -15,32 +15,62 @@ const OrderModal = ({ isOpen, onClose, cake, onSubmit }) => {
       date: formData.get("date"),
       time: formData.get("time"),
     };
+
     onSubmit(data);
+    onClose(); // Close the modal
   };
 
   return (
     <div className={css.modalOverlay}>
       <div className={css.modalContent}>
-        <h2>Order {cake.name}</h2>
-        <p>{cake.components.join(", ")}</p>
-        <p>Weight: {cake.weight} kg</p>
-        <p>Price: ${cake.price}</p>
-        <form onSubmit={handleSubmit}>
-          <div className={css.formGroup}>
-            <label htmlFor="address">Address:</label>
-            <input type="text" name="address" id="address" required />
-          </div>
-          <div className={css.formGroup}>
-            <label htmlFor="date">Date:</label>
-            <input type="date" name="date" id="date" required />
-          </div>
-          <div className={css.formGroup}>
-            <label htmlFor="time">Time:</label>
-            <input type="time" name="time" id="time" required />
-          </div>
-          <button type="submit">Submit Order</button>
-        </form>
-        <button onClick={onClose}>Close</button>
+        <h2 className={css.orderName}>Order: {cake.name}</h2>
+        <div className={css.dataText}>
+          <p style={{ color: "black" }}>{cake.components.join(", ")}</p>
+          <p style={{ color: "black" }}>Weight: {cake.weight} kg</p>
+          <p style={{ color: "black" }}>Price: ${cake.price}</p>
+        </div>
+        <div className={css.formWrapper}>
+          <form onSubmit={handleSubmit}>
+            <div className={css.formGroup}>
+              <label htmlFor="address">Address:</label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                required
+                placeholder="Provide your address..."
+              />
+            </div>
+            <div className={css.formGroup}>
+              <label htmlFor="date">Date:</label>
+              <input
+                style={{ colorScheme: "dark" }}
+                type="date"
+                name="date"
+                id="date"
+                required
+              />
+            </div>
+            <div className={css.formGroup}>
+              <label htmlFor="time">Time:</label>
+              <input
+                style={{ colorScheme: "dark" }}
+                type="time"
+                name="time"
+                id="time"
+                required
+              />
+            </div>
+            <div className={css.buttons}>
+              <button className={css.submit} type="submit">
+                Submit Order
+              </button>
+              <button className={css.close} type="button" onClick={onClose}>
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

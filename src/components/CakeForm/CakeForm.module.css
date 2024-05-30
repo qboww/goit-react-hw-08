@@ -9,16 +9,7 @@ form {
   flex-direction: column;
   gap: 16px;
 }
-
-.containerLeft,
-.containerRight {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.sidesContainer {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -49,6 +40,10 @@ select {
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
+}
+
+.btn{
+  border: 1px solid grey;
 }
 
 @media screen and (min-width: 768px) {

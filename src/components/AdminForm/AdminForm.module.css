@@ -1,0 +1,9 @@
+.buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn{
+  border: 1px solid grey;
+}

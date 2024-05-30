@@ -6,6 +6,7 @@ import AdminForm from "../../components/AdminForm/AdminForm";
 import AdminSearch from "../../components/AdminSearch/AdminSearch";
 import CakeForm from "../../components/CakeForm/CakeForm";
 import { Toaster } from "react-hot-toast";
+import css from "./AdminPage.module.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -55,16 +56,17 @@ const AdminPage = () => {
   return (
     <div className="container">
       <div className="wrapper">
-        <div className="card">
-          <div className="card-desc">
-            <h1>Admin Page</h1>
-            <p>Here you are able to create, edit, and delete cakes</p>
+        <AdminSearch onSelectCake={handleSelectCake} />
+        <div className={css.sides}>
+          <div className={css.side}>
+            <CakeForm />
           </div>
-        </div>
-        <div className="card">
-          <CakeForm />
-          <AdminSearch onSelectCake={handleSelectCake} />
-          <AdminForm selectedCake={selectedCake} onDelete={handleCakeDeleted} />
+          <div className={css.side}>
+            <AdminForm
+              selectedCake={selectedCake}
+              onDelete={handleCakeDeleted}
+            />
+          </div>
         </div>
       </div>
       <Toaster />

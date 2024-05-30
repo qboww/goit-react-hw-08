@@ -1,11 +1,11 @@
-import { RotatingLines } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner";
 
 import css from "./Refresher.module.css";
 
 const Refresher = () => {
   return (
     <div className={css.loaderWrapper}>
-      <RotatingLines
+      <ThreeDots
         visible={true}
         height="50"
         width="50"

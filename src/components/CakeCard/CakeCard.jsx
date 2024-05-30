@@ -6,12 +6,14 @@ const CakeCard = ({ cake, onOrder }) => {
   return (
     <div className={css.cakeCard}>
       <div className={css.cardDetails}>
-        <img src="../../../public/cheese-cake.png" alt={cake.name} />
+        <img src="../../../cheese-cake.png" alt={cake.name} />
         <div className={css.data}>
-          <h2>{cake.name}</h2>
+          <h2 className={css.cakeName}>{cake.name}</h2>
           <p>{cake.components.join(", ")}</p>
           <p>Weight: {cake.weight} kg</p>
-          <p>Price: ${cake.price}</p>
+          <p>
+            Price: <span className={css.price}>${cake.price}</span>
+          </p>
         </div>
       </div>
       <button onClick={() => onOrder(cake)}>Order</button>

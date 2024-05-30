@@ -10,6 +10,7 @@ const AdminSearch = ({ onSelectCake }) => {
   const allCakes = useSelector(selectAllCakes);
   const isLoading = useSelector(selectIsLoadingCakes);
   const [options, setOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
     dispatch(fetchAllCakesThunk());
@@ -22,29 +23,30 @@ const AdminSearch = ({ onSelectCake }) => {
 
   useEffect(() => {
     if (cakes.length > 0) {
-      setOptions(
-        cakes.map((cake) => ({
-          value: cake._id,
-          label: cake.name,
-        })),
-      );
+      const options = cakes.map((cake) => ({
+        value: cake._id,
+        label: cake.name,
+      }));
+      setOptions(options);
     }
-  }, [cakes]);
+  }, [cakes, onSelectCake]);
 
   const handleSelectChange = (selectedOption) => {
     const selectedCake = cakes.find(
       (cake) => cake._id === selectedOption.value,
     );
+    setSelectedOption(selectedOption);
     onSelectCake(selectedCake);
   };
 
   return (
     <div className="sub-card">
-      <h2 className="component-title">Admin Search</h2>
-      <p>Provide cake name</p>
+      <h2 className="component-title">Find a cake to edit</h2>
+      <p style={{color: "black"}}>Provide cake name</p>
       <Select
         isLoading={isLoading}
         options={options}
+        value={selectedOption}
         onChange={handleSelectChange}
         placeholder="Search cakes..."
       />

@@ -1,0 +1,17 @@
+.sides {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.side {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  .sides {
+    flex-direction: row;
+  }
+}

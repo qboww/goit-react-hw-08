@@ -1,34 +1,59 @@
 @import url("./reset.css");
-@import url("@fontsource/inter-tight/400.css");
-@import url("@fontsource/inter-tight/500.css");
-@import url("@fontsource/inter-tight/600.css");
+@import url("@fontsource/source-sans-pro");
+@import url("@fontsource/source-sans-pro/400.css");
+@import url("@fontsource/source-sans-pro/600.css");
+@import url("@fontsource/source-sans-pro/700.css");
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: light;
   color: white;
-  background-color: #323232;
+  background: rgb(242, 150, 70);
+  background: linear-gradient(
+    120deg,
+    rgba(242, 150, 70, 1) 0%,
+    rgba(110, 73, 66, 1) 39%,
+    rgba(255, 245, 130, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center top;
+  background-attachment: fixed;
 }
 
 body {
-  font-family: "Inter Tight", sans-serif;
+  font-family: "Source Sans Pro";
 }
 
 label {
   display: block;
 }
 
-input {
-  color: black;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
+input,
+select {
+  color: hsl(0, 0%, 20%);
+  background-color: #ffffff;
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
   padding: 8px 16px;
   outline: none;
+  max-height: 38px;
+  height: 100%;
 }
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2684ff;
+  border-width: 2px;
+}
+
 label {
   margin-bottom: 6px;
 }
@@ -40,7 +65,8 @@ h1 {
 }
 
 h2 {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 22px;
 }
 
 p {
@@ -53,7 +79,9 @@ button {
   width: fit-content;
   cursor: pointer;
   color: white;
-  background-color: #323232;
+  background-color: white;
+  color: black;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   padding: 8px 16px;
@@ -62,30 +90,30 @@ button {
 
 button:hover {
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: #212121;
+  background-color: #ed9346;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.116);
   color: black;
   padding: 16px;
   border-radius: 8px;
+  border: 1px solid rgba(128, 128, 128, 0.137);
 }
 
 .sub-card {
   padding: 16px;
-  border: 1px solid grey;
+  background-color: #fff;
+  color: black;
   border-radius: 8px;
 }
 
 .component-title {
   font-size: 24px;
   padding-bottom: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid grey;
 }
 
 .wrapper {
@@ -121,7 +149,7 @@ button:hover {
   margin-right: auto;
 }
 
-a{
+a {
   color: black;
 }
 

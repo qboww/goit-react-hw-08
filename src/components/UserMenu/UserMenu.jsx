@@ -12,7 +12,7 @@ const UserMenu = () => {
 
   return (
     <div className={css.wrapper}>
-      <p className={css.title}>Welcome, {username}</p>
+      <p className={css.title}>Logged as, {username}</p>
       <a onClick={() => dispatch(logoutThunk())} className={css.logout}>
         Logout
       </a>

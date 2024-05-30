@@ -3,7 +3,6 @@
 }
 
 .inputsContainer {
-  border: 1px solid grey;
   padding: 16px;
   border-radius: 8px;
 
@@ -13,17 +12,21 @@
 }
 
 .input {
-  max-width: 350px;
+  max-width: 300px;
   width: 100%;
 }
 
 .btn {
-  max-width: 150px;
+  margin-top: 32px;
+  border: 1px solid grey;
+}
+
+.wrapper {
+  max-width: 500px;
   width: 100%;
 }
 
-.btnContainer {
+.parentWrapper {
   display: flex;
   justify-content: center;
-  padding-top: 16px;
 }

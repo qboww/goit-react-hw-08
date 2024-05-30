@@ -48,7 +48,7 @@ const CakeForm = () => {
       await dispatch(addCakeThunk(values)).unwrap();
       toast.success("Cake created successfully!");
       actions.resetForm();
-      setSelectedIngredients([]); // Reset selected ingredients after form submission
+      setSelectedIngredients([]);
     } catch (error) {
       toast.error("Failed to create cake.");
     }
@@ -77,84 +77,82 @@ const CakeForm = () => {
       >
         {({ setFieldValue }) => (
           <Form>
-            <div className={css.sidesContainer}>
-              <div className={css.containerLeft}>
-                <div>
-                  <label htmlFor="name">Name</label>
-                  <div className="input-error">
-                    <Field
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Enter cake name..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="name"
-                      component="span"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="weight">Weight</label>
-                  <div className="input-error">
-                    <Field
-                      type="number"
-                      id="weight"
-                      name="weight"
-                      placeholder="Enter weight..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="weight"
-                      component="span"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="price">Price</label>
-                  <div className="input-error">
-                    <Field
-                      type="number"
-                      id="price"
-                      name="price"
-                      placeholder="Enter price..."
-                    />
-                    <ErrorMessage
-                      className="error"
-                      name="price"
-                      component="span"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className={css.containerRight}>
-                <div className={css.taskDescription}>
-                  <label htmlFor="components">Components</label>
-                  <CreatableSelect
-                    id="components"
-                    name="components"
-                    options={ingredientOptions}
-                    value={selectedIngredients}
-                    onChange={(options) => {
-                      handleIngredientChange(options);
-                      setFieldValue(
-                        "components",
-                        options.map((option) => option.value),
-                      );
-                    }}
-                    onCreateOption={handleCreateIngredient}
-                    isMulti
-                    placeholder="Select or create components..."
+            <div className={css.wrapper}>
+              <div>
+                <label htmlFor="name">Name</label>
+                <div className="input-error">
+                  <Field
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter cake name..."
                   />
                   <ErrorMessage
                     className="error"
-                    name="components"
+                    name="name"
                     component="span"
                   />
                 </div>
               </div>
+              <div>
+                <label htmlFor="weight">Weight</label>
+                <div className="input-error">
+                  <Field
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    placeholder="Enter weight..."
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="weight"
+                    component="span"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="price">Price</label>
+                <div className="input-error">
+                  <Field
+                    type="number"
+                    id="price"
+                    name="price"
+                    placeholder="Enter price..."
+                  />
+                  <ErrorMessage
+                    className="error"
+                    name="price"
+                    component="span"
+                  />
+                </div>
+              </div>
+
+              <div className={css.taskDescription}>
+                <label htmlFor="components">Components</label>
+                <CreatableSelect
+                  id="components"
+                  name="components"
+                  options={ingredientOptions}
+                  value={selectedIngredients}
+                  onChange={(options) => {
+                    handleIngredientChange(options);
+                    setFieldValue(
+                      "components",
+                      options.map((option) => option.value),
+                    );
+                  }}
+                  onCreateOption={handleCreateIngredient}
+                  isMulti
+                  placeholder="Select or create components..."
+                />
+                <ErrorMessage
+                  className="error"
+                  name="components"
+                  component="span"
+                />
+              </div>
             </div>
+
             <div className={css.buttons}>
               <button type="submit" className={css.btn}>
                 Save

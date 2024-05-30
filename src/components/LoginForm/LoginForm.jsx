@@ -46,57 +46,58 @@ const LoginForm = () => {
         validationSchema={validationSchema}
         initialValues={initialValues}
       >
-        <Form className="card">
-          <div className="sub-card">
-            <div className={css.inputsContainer}>
-              <div className={css.inputContainer}>
-                <h2 className="component-title">Login</h2>
-                <label htmlFor={emailFieldId}>Email</label>
-                <div className="input-error">
-                  <Field
-                    className={css.input}
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email..."
-                    id={emailFieldId}
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="email"
-                    component="span"
-                  />
+        <div className={css.parentWrapper}>
+          <div className={css.wrapper}>
+            <Form className="sub-card">
+              <div className={css.inputsContainer}>
+                <div className={css.inputContainer}>
+                  <h2 className="component-title">Login</h2>
+                  <label htmlFor={emailFieldId}>Email</label>
+                  <div className="input-error">
+                    <Field
+                      className={css.input}
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email..."
+                      id={emailFieldId}
+                    />
+                    <ErrorMessage
+                      className="error"
+                      name="email"
+                      component="span"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className={css.inputContainer}>
-                <label htmlFor={passwordFieldId}>Password</label>
-                <div className="input-error">
-                  <Field
-                    className={css.input}
-                    type="password"
-                    name="password"
-                    placeholder="Enter your password..."
-                    id={passwordFieldId}
-                  />
-                  <ErrorMessage
-                    className="error"
-                    name="password"
-                    component="span"
-                  />
-                </div>
-                <label className={css.labelContainer}>
-                  <Link to="/register" className={css.loginLabel}>
-                    Do not have an account?
-                  </Link>
-                </label>
-                <div className={css.btnContainer}>
+                <div className={css.inputContainer}>
+                  <label htmlFor={passwordFieldId}>Password</label>
+                  <div className="input-error">
+                    <Field
+                      className={css.input}
+                      type="password"
+                      name="password"
+                      placeholder="Enter your password..."
+                      id={passwordFieldId}
+                    />
+                    <ErrorMessage
+                      className="error"
+                      name="password"
+                      component="span"
+                    />
+                  </div>
+                  <label className={css.labelContainer}>
+                    <Link to="/register" className={css.loginLabel}>
+                      Do not have an account?
+                    </Link>
+                  </label>
+
                   <button aria-label="Login" type="submit" className={css.btn}>
                     Login
                   </button>
                 </div>
               </div>
-            </div>
+            </Form>
           </div>
-        </Form>
+        </div>
       </Formik>
       <Toaster />
     </div>

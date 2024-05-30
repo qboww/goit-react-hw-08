@@ -12,7 +12,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         Previous
       </button>
       <span className={css.pageInfo}>
-        Page {currentPage} of {totalPages}
+        {currentPage} of {totalPages}
       </span>
       <button
         onClick={() => onPageChange(currentPage + 1)}

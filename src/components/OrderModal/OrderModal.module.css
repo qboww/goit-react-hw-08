@@ -12,40 +12,49 @@
   color: black;
 }
 
+.orderName{
+  padding-bottom: 16px;
+}
+
+.dataText{
+  padding-bottom: 16px;
+}
+
 .modalContent {
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
   width: 400px;
   max-width: 100%;
 }
 
-.formGroup {
-  margin-bottom: 15px;
+.formWrapper{
+  margin-bottom: 16px;
 }
 
-.formGroup label {
-  display: block;
-  margin-bottom: 5px;
+.buttons {
+  display: flex;
+  gap: 32px;
 }
 
-.formGroup input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
+.close {
+  color: white;
+  background-color: rgba(255, 0, 0, 0.603);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button {
-  display: inline-block;
-  padding: 10px 15px;
-  margin-top: 10px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+.close:hover {
+  background-color: rgba(255, 0, 0, 0.774);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button:hover {
-  background: #0056b3;
+.submit {
+  color: white;
+  background-color: rgba(13, 156, 32, 0.603);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submit:hover {
+  background-color: rgba(13, 156, 32, 0.767);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -10,8 +10,8 @@ import { registerThunk } from "../../redux/authOperations";
 const validationSchema = yup.object().shape({
   name: yup
     .string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
+    .min(3, "Name is too Short!")
+    .max(50, "Name is too Long!")
     .required("Please, provide your name"),
   email: yup
     .string()
@@ -19,8 +19,8 @@ const validationSchema = yup.object().shape({
     .required("Please, provide your email"),
   password: yup
     .string()
-    .min(7, "Too Short!")
-    .max(18, "Too Long!")
+    .min(7, "Password is too Short!")
+    .max(18, "Password is too Long!")
     .required("Please, provide your password"),
 });
 
@@ -43,64 +43,66 @@ const RegistrationForm = () => {
       validationSchema={validationSchema}
     >
       <div className="container">
-        <Form className="card">
-          <div className={css.inputsContainer}>
-            <div className={css.wrapper}>
-              <h2 className="component-title">Register an account</h2>
-              <label htmlFor={nameFieldId}>Username</label>
-              <div className="input-error">
-                <Field
-                  className={css.input}
-                  type="text"
-                  name="name"
-                  placeholder="Enter you username..."
-                  id={nameFieldId}
-                />
-                <ErrorMessage className="error" name="name" component="span" />
+        <div className={css.parentWrapper}>
+          <div className={css.wrapper}>
+            <Form className="sub-card">
+              <div className={css.inputsContainer}>
+                <div className={css.wrapper}>
+                  <h2 className="component-title">Register an account</h2>
+                  <label htmlFor={nameFieldId}>Username</label>
+                  <div className="input-error">
+                    <Field
+                      className={css.input}
+                      type="text"
+                      name="name"
+                      placeholder="Enter you username..."
+                      id={nameFieldId}
+                    />
+                    <ErrorMessage className="error" name="name" component="span" />
+                  </div>
+                </div>
+                <div className={css.wrapper}>
+                  <label htmlFor={emailFieldId}>Email</label>
+                  <div className="input-error">
+                    <Field
+                      className={css.input}
+                      type="email"
+                      name="email"
+                      placeholder="Enter you email..."
+                      id={emailFieldId}
+                    />
+                    <ErrorMessage className="error" name="email" component="span" />
+                  </div>
+                </div>
+                <div className={css.wrapper}>
+                  <label htmlFor={passwordFieldId}>Password</label>
+                  <div className="input-error">
+                    <Field
+                      className={css.input}
+                      type="password"
+                      name="password"
+                      placeholder="Enter you password..."
+                      id={passwordFieldId}
+                    />
+                    <ErrorMessage
+                      className="error"
+                      name="password"
+                      component="span"
+                    />
+                  </div>
+                  <div className={css.linkContainer}>
+                    <NavLink className={css.link} to="/login">
+                      Create account now!
+                    </NavLink>
+                  </div>
+                  <button aria-label="Register" className={css.btn} type="submit">
+                    Register
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className={css.wrapper}>
-              <label htmlFor={emailFieldId}>Email</label>
-              <div className="input-error">
-                <Field
-                  className={css.input}
-                  type="email"
-                  name="email"
-                  placeholder="Enter you email..."
-                  id={emailFieldId}
-                />
-                <ErrorMessage className="error" name="email" component="span" />
-              </div>
-            </div>
-            <div className={css.wrapper}>
-              <label htmlFor={passwordFieldId}>Password</label>
-              <div className="input-error">
-                <Field
-                  className={css.input}
-                  type="password"
-                  name="password"
-                  placeholder="Enter you password..."
-                  id={passwordFieldId}
-                />
-                <ErrorMessage
-                  className="error"
-                  name="password"
-                  component="span"
-                />
-              </div>
-              <div className={css.linkContainer}>
-                <NavLink className={css.link} to="/login">
-                  Already have an account?
-                </NavLink>
-              </div>
-              <div className={css.btnContainer}>
-                <button aria-label="Register" className={css.btn} type="submit">
-                  Register
-                </button>
-              </div>
-            </div>
+            </Form>
           </div>
-        </Form>
+        </div>
       </div>
     </Formik>
   );
