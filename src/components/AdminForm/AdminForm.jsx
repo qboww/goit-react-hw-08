@@ -132,13 +132,14 @@ const AdminForm = ({ selectedCake, onDelete }) => {
               </div>
             </div>
             <div className={css.buttons}>
-              <button type="submit" className={css.btn}>
+              <button type="submit" className={css.btn} aria-label="save">
                 Save
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
                 className={`${css.btn} ${css.deleteButton}`}
+                aria-label="delete"
               >
                 Delete
               </button>

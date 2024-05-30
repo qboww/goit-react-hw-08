@@ -154,7 +154,7 @@ const CakeForm = () => {
             </div>
 
             <div className={css.buttons}>
-              <button type="submit" className={css.btn}>
+              <button type="submit" className={css.btn} aria-label="save">
                 Save
               </button>
             </div>
