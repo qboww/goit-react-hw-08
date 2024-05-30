@@ -14,6 +14,7 @@ const ResourcesPage = () => {
       <div className="wrapper">
         <div className="sub-card">
           <h1 className={css.header}>Our partners</h1>
+          <p className={css.header}>The ones we are in love working with!</p>
           <ul className={css.partList}>
             <li>
               <a href="https://lvivcroissants.com/ua/">
@@ -47,10 +48,10 @@ const ResourcesPage = () => {
         </div>
         <div className="sub-card">
           <div>
-            <h2 className="component-title">How to order a cake?</h2>
+            <h1 className={css.headerOrder}>How to order a cake?</h1>
             <ol className={css.linksList}>
-              <li>Find loved one</li>
-              <li>Try better, use filters, search and sort!</li>
+              <li>Find loved one!</li>
+              <li>Try better, use filters and search</li>
               <li>Press order button</li>
               <li>Fill in order form</li>
               <li>Keep patience...</li>
