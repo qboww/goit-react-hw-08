@@ -14,11 +14,6 @@ const Navigation = () => {
       <NavLink to="/" className={css.link}>
         Home
       </NavLink>
-      {isLoggedIn && userRole !== "admin" && (
-        <NavLink to="/tasks" className={css.link}>
-          Tasks
-        </NavLink>
-      )}
       {isLoggedIn && userRole === "admin" && (
         <NavLink to="/admin" className={css.link}>
           Admin

@@ -4,7 +4,7 @@ import { selectIsLoggedIn } from "../redux/authSlice";
 
 const PublicRoute = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  return isLoggedIn ? <Navigate to="/tasks" /> : children;
+  return isLoggedIn ? <Navigate to="/" /> : children;
 };
 
 export default PublicRoute;

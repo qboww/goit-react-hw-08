@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
+import toast, { Toaster } from "react-hot-toast";
 import CakeList from "../../components/CakeList/CakeList";
 import Pagination from "../../components/Pagination/Pagination";
+import OrderModal from "../../components/OrderModal/OrderModal";
 import {
   fetchCakesThunk,
   fetchIngredientsThunk,
@@ -19,6 +21,8 @@ const CakesPage = () => {
   const [order, setOrder] = useState("asc");
   const [search, setSearch] = useState("");
   const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [selectedCake, setSelectedCake] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -61,11 +65,25 @@ const CakesPage = () => {
   };
 
   const handleOrder = (cake) => {
-    console.log("Order cake", cake);
+    setSelectedCake(cake);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedCake(null);
+  };
+
+  const handleOrderSubmit = (data) => {
+    console.log("Order submitted:", data);
+    setIsModalOpen(false);
+    setSelectedCake(null);
+    toast.success("Order has been processed successfully!");
   };
 
   return (
     <div className="container" ref={wrapperRef}>
+      <Toaster />
       <div className="wrapper">
         <div className="card">
           <div className={css.controlsContainer}>
@@ -97,13 +115,23 @@ const CakesPage = () => {
           <CakeList onOrder={handleOrder} />
         </div>
         <div className="card">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+          <div className={css.paginationContainer}>
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
+      {selectedCake && (
+        <OrderModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          cake={selectedCake}
+          onSubmit={handleOrderSubmit}
+        />
+      )}
     </div>
   );
 };
