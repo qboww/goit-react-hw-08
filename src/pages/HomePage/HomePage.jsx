@@ -1,4 +1,4 @@
-// HomePage.js
+// HomePage.jsx
 import React from "react";
 import WeatherWidget from "../../components/WeatherWidget/WeatherWidget";
 

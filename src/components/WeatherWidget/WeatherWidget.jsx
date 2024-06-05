@@ -1,7 +1,8 @@
-// WeatherWidget.js
+// WeatherWidget.jsx
 import React, { useEffect, useState } from "react";
 import { getWeatherByCoordinates } from "../../config/weatherApi";
 import css from "./WeatherWidget.module.css";
+import Loader from "../Loader/Loader";
 
 const WeatherWidget = () => {
   const [weather, setWeather] = useState(null);
@@ -53,7 +54,7 @@ const WeatherWidget = () => {
   }
 
   if (!weather) {
-    return <div className="weather-widget">Loading...</div>;
+    return <Loader />;
   }
 
   const iconUrl = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
