@@ -111,6 +111,90 @@ const ResourcesPage = () => {
             </ul>
           </div>
         </div>
+
+        <div className="card">
+          <div className="sub-card">
+            <div className={css.tableContainer}>
+              <h2 className="component-title">Related Learning Resources</h2>
+              <table className={css.responsiveTable}>
+                <thead>
+                  <tr>
+                    <th>Resource</th>
+                    <th>Type</th>
+                    <th>Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>React Documentation</td>
+                    <td>Documentation</td>
+                    <td>
+                      <a
+                        href="https://reactjs.org/docs/getting-started.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Redux Documentation</td>
+                    <td>Documentation</td>
+                    <td>
+                      <a
+                        href="https://redux.js.org/introduction/getting-started"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Formik Overview</td>
+                    <td>Documentation</td>
+                    <td>
+                      <a
+                        href="https://formik.org/docs/overview"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visit
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>FreeCodeCamp React Tutorial</td>
+                    <td>Video</td>
+                    <td>
+                      <a
+                        href="https://www.youtube.com/watch?v=vfcqsP99U90"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Watch
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>FreeCodeCamp Redux Tutorial</td>
+                    <td>Video</td>
+                    <td>
+                      <a
+                        href="https://www.youtube.com/watch?v=c3Cn4xYfxJY"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Watch
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

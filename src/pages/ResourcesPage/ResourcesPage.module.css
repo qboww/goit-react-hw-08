@@ -21,3 +21,19 @@
   max-width: 200px;
   width: 100%;
 }
+
+.responsiveTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsiveTable th,
+.responsiveTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.responsiveTable th {
+  background-color: #f2f2f2;
+}

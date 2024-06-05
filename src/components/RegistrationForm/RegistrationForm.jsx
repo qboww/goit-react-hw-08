@@ -89,7 +89,7 @@ const RegistrationForm = () => {
                 />
               </div>
               <div className={css.linkContainer}>
-                <NavLink className={css.link} to="/login">
+                <NavLink className={css.link} to="/login" aria-label="login button">
                   Already have an account?
                 </NavLink>
               </div>
