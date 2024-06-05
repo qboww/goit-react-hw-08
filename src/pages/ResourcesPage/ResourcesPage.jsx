@@ -1,18 +1,10 @@
 import css from "./ResourcesPage.module.css";
 
 const videos = [
-  "https://www.youtube.com/watch?v=vfcqsP99U90",
-  "https://www.youtube.com/watch?v=c3Cn4xYfxJY",
-  "https://www.youtube.com/watch?v=JyeWoqWsQFo",
+  "https://www.youtube.com/embed/vfcqsP99U90",
+  "https://www.youtube.com/embed/c3Cn4xYfxJY",
+  "https://www.youtube.com/embed/JyeWoqWsQFo",
 ];
-
-const getYouTubeThumbnail = (url) => {
-  const videoId = url.split("v=")[1];
-  const ampersandPosition = videoId.indexOf("&");
-  return `https://img.youtube.com/vi/${
-    ampersandPosition !== -1 ? videoId.substring(0, ampersandPosition) : videoId
-  }/hqdefault.jpg`;
-};
 
 const ResourcesPage = () => {
   return (
@@ -95,17 +87,19 @@ const ResourcesPage = () => {
             </ol>
           </div>
           <div className="sub-card">
-            <h2 className="component-title">Freecodecamp videos</h2>
+            <h2 className="component-title">FreeCodeCamp videos</h2>
             <ul className={css.videoList}>
               {videos.map((video, index) => (
                 <li key={index} className={css.videoItem}>
-                  <a href={video} target="_blank" rel="noopener noreferrer">
-                    <img
-                      src={getYouTubeThumbnail(video)}
-                      alt={`Video ${index + 1}`}
-                      className={css.thumbnail}
-                    />
-                  </a>
+                  <iframe className={css.vids}
+                    width="175"
+                    height="113"
+                    src={video}
+                    title={`Video ${index + 1}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </li>
               ))}
             </ul>

@@ -13,6 +13,12 @@
   background-color: #323232;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   font-family: "Inter Tight", sans-serif;
 }
@@ -121,7 +127,7 @@ button:hover {
   margin-right: auto;
 }
 
-a{
+a {
   color: black;
 }
 
